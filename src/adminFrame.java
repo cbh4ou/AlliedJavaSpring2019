@@ -5,15 +5,12 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class adminFrame extends javax.swing.JFrame implements Runnable{
-    int mouseX;
-    int mouseY;
+    private int mouseX;
+    private int mouseY;
     
     public adminFrame() {
         Thread t = new Thread(this);
-        t.start();
         initComponents();
-        workSchPanel.setVisible(false);
-        tasksPanel.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -35,20 +32,19 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         tasksButton = new javax.swing.JLabel();
         scheduleButton1 = new javax.swing.JLabel();
         profileButton = new javax.swing.JLabel();
-        schAppLabel = new javax.swing.JLabel();
         pRegLabel = new javax.swing.JLabel();
         pSearchLabel = new javax.swing.JLabel();
         profilePanel = new javax.swing.JPanel();
-        profileTitle = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        CardPanel = new javax.swing.JPanel();
+        registerPanel = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        searchPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        workSchPanel = new javax.swing.JPanel();
-        workSchTitle = new javax.swing.JLabel();
-        tasksPanel = new javax.swing.JPanel();
-        tasksTitle = new javax.swing.JLabel();
+        Card3 = new javax.swing.JPanel();
+        Tasks = new javax.swing.JPanel();
+        Profile = new javax.swing.JPanel();
+        Schedule = new javax.swing.JPanel();
+        profileTitle = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -211,12 +207,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         menu.add(profileButton);
         profileButton.setBounds(20, 140, 50, 20);
 
-        schAppLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        schAppLabel.setForeground(new java.awt.Color(255, 255, 255));
-        schAppLabel.setText("Schedule Appointment");
-        menu.add(schAppLabel);
-        schAppLabel.setBounds(50, 400, 250, 40);
-
         pRegLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         pRegLabel.setForeground(new java.awt.Color(255, 255, 255));
         pRegLabel.setText("Employee Registration");
@@ -231,6 +221,11 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         pSearchLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         pSearchLabel.setForeground(new java.awt.Color(255, 255, 255));
         pSearchLabel.setText("Employee Search");
+        pSearchLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pSearchLabelMouseClicked(evt);
+            }
+        });
         menu.add(pSearchLabel);
         pSearchLabel.setBounds(50, 310, 220, 50);
 
@@ -240,19 +235,12 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         profilePanel.setOpaque(false);
         profilePanel.setLayout(null);
 
-        profileTitle.setFont(new java.awt.Font("Yu Gothic", 1, 48)); // NOI18N
-        profileTitle.setForeground(new java.awt.Color(255, 255, 255));
-        profileTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        profileTitle.setText("Profile");
-        profilePanel.add(profileTitle);
-        profileTitle.setBounds(360, 10, 380, 70);
+        CardPanel.setBackground(new Color(0,0,0,0));
+        CardPanel.setOpaque(false);
+        CardPanel.setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new Color(0,0,0,0));
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.CardLayout());
-
-        jPanel2.setBackground(new Color(0,0,0,64));
-        jPanel2.setDoubleBuffered(false);
+        registerPanel.setBackground(new Color(0,0,0,64));
+        registerPanel.setDoubleBuffered(false);
 
         jButton2.setText("Employee Registration");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -261,80 +249,113 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout registerPanelLayout = new javax.swing.GroupLayout(registerPanel);
+        registerPanel.setLayout(registerPanelLayout);
+        registerPanelLayout.setHorizontalGroup(
+            registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerPanelLayout.createSequentialGroup()
                 .addGap(447, 447, 447)
                 .addComponent(jButton2)
                 .addContainerGap(454, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        registerPanelLayout.setVerticalGroup(
+            registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerPanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jButton2)
                 .addContainerGap(605, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, "card2");
+        CardPanel.add(registerPanel, "register");
 
-        jPanel3.setBackground(new Color(0,0,0,64));
-        jPanel3.setOpaque(true);
+        searchPanel.setBackground(new Color(0,0,0,64));
+        searchPanel.setOpaque(true);
 
         jButton1.setText("jButton1");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(240, 240, 240)
                 .addComponent(jButton1)
                 .addContainerGap(727, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jButton1)
                 .addContainerGap(529, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, "card3");
+        CardPanel.add(searchPanel, "search");
 
-        profilePanel.add(jPanel1);
-        jPanel1.setBounds(30, 100, 1040, 660);
+        javax.swing.GroupLayout Card3Layout = new javax.swing.GroupLayout(Card3);
+        Card3.setLayout(Card3Layout);
+        Card3Layout.setHorizontalGroup(
+            Card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1040, Short.MAX_VALUE)
+        );
+        Card3Layout.setVerticalGroup(
+            Card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        CardPanel.add(Card3, "card4");
+
+        javax.swing.GroupLayout TasksLayout = new javax.swing.GroupLayout(Tasks);
+        Tasks.setLayout(TasksLayout);
+        TasksLayout.setHorizontalGroup(
+            TasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1040, Short.MAX_VALUE)
+        );
+        TasksLayout.setVerticalGroup(
+            TasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        CardPanel.add(Tasks, "tasks");
+
+        javax.swing.GroupLayout ProfileLayout = new javax.swing.GroupLayout(Profile);
+        Profile.setLayout(ProfileLayout);
+        ProfileLayout.setHorizontalGroup(
+            ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1040, Short.MAX_VALUE)
+        );
+        ProfileLayout.setVerticalGroup(
+            ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        CardPanel.add(Profile, "profile");
+
+        javax.swing.GroupLayout ScheduleLayout = new javax.swing.GroupLayout(Schedule);
+        Schedule.setLayout(ScheduleLayout);
+        ScheduleLayout.setHorizontalGroup(
+            ScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1040, Short.MAX_VALUE)
+        );
+        ScheduleLayout.setVerticalGroup(
+            ScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        CardPanel.add(Schedule, "schedule");
+
+        profilePanel.add(CardPanel);
+        CardPanel.setBounds(30, 100, 1040, 660);
+
+        profileTitle.setFont(new java.awt.Font("Yu Gothic", 1, 48)); // NOI18N
+        profileTitle.setForeground(new java.awt.Color(255, 255, 255));
+        profileTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        profileTitle.setText("Profile");
+        profilePanel.add(profileTitle);
+        profileTitle.setBounds(150, 0, 740, 70);
 
         getContentPane().add(profilePanel);
         profilePanel.setBounds(350, 35, 1100, 780);
-
-        workSchPanel.setOpaque(false);
-        workSchPanel.setLayout(null);
-
-        workSchTitle.setFont(new java.awt.Font("Yu Gothic", 1, 48)); // NOI18N
-        workSchTitle.setForeground(new java.awt.Color(255, 255, 255));
-        workSchTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        workSchTitle.setText("Work Schedule");
-        workSchPanel.add(workSchTitle);
-        workSchTitle.setBounds(360, 10, 380, 70);
-
-        getContentPane().add(workSchPanel);
-        workSchPanel.setBounds(350, 35, 1100, 780);
-
-        tasksPanel.setOpaque(false);
-        tasksPanel.setLayout(null);
-
-        tasksTitle.setFont(new java.awt.Font("Yu Gothic", 1, 48)); // NOI18N
-        tasksTitle.setForeground(new java.awt.Color(255, 255, 255));
-        tasksTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tasksTitle.setText("Tasks");
-        tasksPanel.add(tasksTitle);
-        tasksTitle.setBounds(360, 10, 380, 70);
-
-        getContentPane().add(tasksPanel);
-        tasksPanel.setBounds(350, 35, 1100, 780);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adminBackground.png"))); // NOI18N
         getContentPane().add(bg);
@@ -348,12 +369,12 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
 
-        this.setLocation(x-mouseX, y-mouseY);
+        this.setLocation(x-getMouseX(), y-getMouseY());
     }//GEN-LAST:event_jLabelDragMouseDragged
 
     private void jLabelDragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDragMousePressed
-        mouseX = evt.getX();
-        mouseY = evt.getY();
+        setMouseX(evt.getX());
+        setMouseY(evt.getY());
     }//GEN-LAST:event_jLabelDragMousePressed
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
@@ -367,23 +388,25 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_logoutMouseClicked
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
-        panelsOff();
-        profilePanel.setVisible(true);
+        
     }//GEN-LAST:event_homeMouseClicked
 
     private void tasksButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tasksButtonMouseClicked
-        panelsOff();
-        tasksPanel.setVisible(true);
+        profileTitle.setText("Tasks");
+        CardLayout cl = (CardLayout)(CardPanel.getLayout());
+        cl.show(CardPanel, "tasks");
     }//GEN-LAST:event_tasksButtonMouseClicked
 
     private void scheduleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scheduleButton1MouseClicked
-        panelsOff();
-        workSchPanel.setVisible(true);
+       profileTitle.setText("Schedules");
+        CardLayout cl = (CardLayout)(CardPanel.getLayout());
+        cl.show(CardPanel, "schedule");
     }//GEN-LAST:event_scheduleButton1MouseClicked
 
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
-        panelsOff();
-        profilePanel.setVisible(true);
+        profileTitle.setText("Profile");
+        CardLayout cl = (CardLayout)(CardPanel.getLayout());
+        cl.show(CardPanel, "profile");
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -391,17 +414,25 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void pRegLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pRegLabelMouseClicked
-        CardLayout cl = (CardLayout)(jPanel1.getLayout());
-        cl.show(jPanel1, "card3");
+        profileTitle.setText("Employee Registration");
+        CardLayout cl = (CardLayout)(CardPanel.getLayout());
+        cl.show(CardPanel, "register");
     }//GEN-LAST:event_pRegLabelMouseClicked
 
-    private void panelsOff(){
-        workSchPanel.setVisible(false);
-        tasksPanel.setVisible(false);
-        profilePanel.setVisible(false);
-    }
+    private void pSearchLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pSearchLabelMouseClicked
+        profileTitle.setText("Employee Search");
+        CardLayout cl = (CardLayout)(CardPanel.getLayout());
+        cl.show(CardPanel, "search");
+    }//GEN-LAST:event_pSearchLabelMouseClicked
+
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Card3;
+    private javax.swing.JPanel CardPanel;
+    private javax.swing.JPanel Profile;
+    private javax.swing.JPanel Schedule;
+    private javax.swing.JPanel Tasks;
     private javax.swing.JLabel bg;
     private javax.swing.JPanel clockDate;
     private javax.swing.JLabel exit;
@@ -413,9 +444,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel jLabelClock;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelDrag;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel logout;
     private javax.swing.JLabel logoutIcon;
     private javax.swing.JLabel logoutLabel;
@@ -425,13 +453,10 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel profileButton;
     private javax.swing.JPanel profilePanel;
     private javax.swing.JLabel profileTitle;
-    private javax.swing.JLabel schAppLabel;
+    private javax.swing.JPanel registerPanel;
     private javax.swing.JLabel scheduleButton1;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel tasksButton;
-    private javax.swing.JPanel tasksPanel;
-    private javax.swing.JLabel tasksTitle;
-    private javax.swing.JPanel workSchPanel;
-    private javax.swing.JLabel workSchTitle;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -463,5 +488,33 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
                 jLabelDate.setText(date);
                 jLabelClock.setText(time);
         }
+    }
+
+    /**
+     * @return the mouseY
+     */
+    public int getMouseY() {
+        return mouseY;
+    }
+
+    /**
+     * @param mouseY the mouseY to set
+     */
+    public void setMouseY(int mouseY) {
+        this.mouseY = mouseY;
+    }
+
+    /**
+     * @return the mouseX
+     */
+    public int getMouseX() {
+        return mouseX;
+    }
+
+    /**
+     * @param mouseX the mouseX to set
+     */
+    public void setMouseX(int mouseX) {
+        this.mouseX = mouseX;
     }
 }
