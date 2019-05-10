@@ -6,7 +6,6 @@ public class loginFrame extends javax.swing.JFrame {
     int mouseY;
     public loginFrame() {
         initComponents();
-        jPasswordField2.setEchoChar((char)0);
     }
 
     @SuppressWarnings("unchecked")
@@ -18,7 +17,7 @@ public class loginFrame extends javax.swing.JFrame {
         userRole = new javax.swing.JComboBox<>();
         usernameField = new javax.swing.JTextField();
         signIn = new javax.swing.JButton();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        jPasswordField = new javax.swing.JPasswordField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,22 +97,24 @@ public class loginFrame extends javax.swing.JFrame {
         getContentPane().add(signIn);
         signIn.setBounds(680, 520, 110, 30);
 
-        jPasswordField2.setBackground(new java.awt.Color(51, 51, 51));
-        jPasswordField2.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jPasswordField2.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField2.setText("Password");
-        jPasswordField2.addFocusListener(new java.awt.event.FocusAdapter() {
+        jPasswordField.setBackground(new java.awt.Color(51, 51, 51));
+        jPasswordField.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField.setText("Password");
+        jPasswordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jPasswordField2FocusGained(evt);
+                jPasswordFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordFieldFocusLost(evt);
             }
         });
-        jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPasswordField2KeyPressed(evt);
+                jPasswordFieldKeyPressed(evt);
             }
         });
-        getContentPane().add(jPasswordField2);
-        jPasswordField2.setBounds(620, 480, 230, 30);
+        getContentPane().add(jPasswordField);
+        jPasswordField.setBounds(620, 480, 230, 30);
 
         background.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login-background-final.jpg.png"))); // NOI18N
@@ -171,70 +172,76 @@ public class loginFrame extends javax.swing.JFrame {
 
     private void signInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signInKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        Object selected = userRole.getSelectedItem();
-        if (selected.toString().equals("Doctor")){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
-        }
-        if(selected.toString().equals("Receptionist")){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if(selected.toString().equals("Admin")){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
-        }
+            Object selected = userRole.getSelectedItem();
+            if (selected.toString().equals("Doctor")){
+                this.dispose();
+                doctorFrame doctor = new doctorFrame();
+                doctor.setVisible(true);
+            }
+            if(selected.toString().equals("Receptionist")){
+                this.dispose();
+                receptionistFrame receptionist = new receptionistFrame();
+                receptionist.setVisible(true);
+            }
+            if(selected.toString().equals("Admin")){
+                this.dispose();
+                adminFrame admin = new adminFrame();
+                admin.setVisible(true);
+            }
         }
     }//GEN-LAST:event_signInKeyPressed
 
     private void usernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyPressed
-         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        Object selected = userRole.getSelectedItem();
-        if (selected.toString().equals("Doctor")){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
-        }
-        if(selected.toString().equals("Receptionist")){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if(selected.toString().equals("Admin")){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
-        }
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Object selected = userRole.getSelectedItem();
+            if (selected.toString().equals("Doctor")){
+                this.dispose();
+                doctorFrame doctor = new doctorFrame();
+                doctor.setVisible(true);
+            }
+            if(selected.toString().equals("Receptionist")){
+                this.dispose();
+                receptionistFrame receptionist = new receptionistFrame();
+                receptionist.setVisible(true);
+            }
+            if(selected.toString().equals("Admin")){
+                this.dispose();
+                adminFrame admin = new adminFrame();
+                admin.setVisible(true);
+            }
         }
     }//GEN-LAST:event_usernameFieldKeyPressed
 
-    private void jPasswordField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField2KeyPressed
-if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        Object selected = userRole.getSelectedItem();
-        if (selected.toString().equals("Doctor")){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Object selected = userRole.getSelectedItem();
+            if (selected.toString().equals("Doctor")){
+                this.dispose();
+                doctorFrame doctor = new doctorFrame();
+                doctor.setVisible(true);
+            }
+            if(selected.toString().equals("Receptionist")){
+                this.dispose();
+                receptionistFrame receptionist = new receptionistFrame();
+                receptionist.setVisible(true);
+            }
+            if(selected.toString().equals("Admin")){
+                this.dispose();
+                adminFrame admin = new adminFrame();
+                admin.setVisible(true);
+            }
         }
-        if(selected.toString().equals("Receptionist")){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if(selected.toString().equals("Admin")){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
-        }
-        }          // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2KeyPressed
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
 
-    private void jPasswordField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField2FocusGained
-       jPasswordField2.setText("");
-    }//GEN-LAST:event_jPasswordField2FocusGained
+    private void jPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusGained
+        jPasswordField.setText("");
+    }//GEN-LAST:event_jPasswordFieldFocusGained
+
+    private void jPasswordFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusLost
+        if (jPasswordField.getText().isEmpty()){
+            jPasswordField.setText(" Password");
+        }
+    }//GEN-LAST:event_jPasswordFieldFocusLost
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -248,7 +255,7 @@ if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
     private javax.swing.JLabel background;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabelDrag;
-    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton signIn;
     private javax.swing.JComboBox<String> userRole;
     private javax.swing.JTextField usernameField;
