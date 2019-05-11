@@ -16,7 +16,6 @@ public class loginFrame extends javax.swing.JFrame {
 
         exit = new javax.swing.JLabel();
         jLabelDrag = new javax.swing.JLabel();
-        userRole = new javax.swing.JComboBox<>();
         usernameField = new javax.swing.JTextField();
         signIn = new javax.swing.JButton();
         jPasswordField = new javax.swing.JPasswordField();
@@ -53,11 +52,6 @@ public class loginFrame extends javax.swing.JFrame {
         getContentPane().add(jLabelDrag);
         jLabelDrag.setBounds(0, 0, 1450, 30);
 
-        userRole.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        userRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Role", "Doctor", "Receptionist", "Admin" }));
-        getContentPane().add(userRole);
-        userRole.setBounds(640, 390, 190, 30);
-
         usernameField.setBackground(new java.awt.Color(51, 51, 51));
         usernameField.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         usernameField.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,13 +67,18 @@ public class loginFrame extends javax.swing.JFrame {
                 usernameFieldFocusLost(evt);
             }
         });
+        usernameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usernameFieldMouseClicked(evt);
+            }
+        });
         usernameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 usernameFieldKeyPressed(evt);
             }
         });
         getContentPane().add(usernameField);
-        usernameField.setBounds(620, 440, 230, 30);
+        usernameField.setBounds(630, 390, 230, 30);
 
         signIn.setBackground(new java.awt.Color(51, 51, 51));
         signIn.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,7 +96,7 @@ public class loginFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(signIn);
-        signIn.setBounds(680, 520, 110, 30);
+        signIn.setBounds(690, 470, 110, 30);
 
         jPasswordField.setBackground(new java.awt.Color(51, 51, 51));
         jPasswordField.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,7 +115,7 @@ public class loginFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jPasswordField);
-        jPasswordField.setBounds(620, 480, 230, 30);
+        jPasswordField.setBounds(630, 430, 230, 30);
 
         background.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login-background-final.jpg.png"))); // NOI18N
@@ -144,34 +143,36 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void usernameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusGained
-        usernameField.setText("");
+
+             usernameField.setText("Username");
+   
     }//GEN-LAST:event_usernameFieldFocusGained
 
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusLost
         if (usernameField.getText().isEmpty()){
-            usernameField.setText(" Username");
+            usernameField.setText("Username");
         }
     }//GEN-LAST:event_usernameFieldFocusLost
 
     private void signInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInMouseClicked
         String pass = new String(jPasswordField.getPassword());
-        Object selected = userRole.getSelectedItem();
          Datasource user = new Datasource();
+          System.out.println(pass + " , " + usernameField.getText());
         if(!user.open()) {
             System.out.println("Can't open datasource");
             return;
         }
-        if (selected.toString().equals("Doctor")){
+        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
             this.dispose();
             doctorFrame doctor = new doctorFrame();
             doctor.setVisible(true);
         }
-        if(selected.toString().equals("Receptionist")){
+        if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
             this.dispose();
             receptionistFrame receptionist = new receptionistFrame();
             receptionist.setVisible(true);
         }
-        if(user.loginUsers(pass,usernameField.getText()) && selected.equals("Admin")){
+        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
             this.dispose();
             adminFrame admin = new adminFrame();
             admin.setVisible(true);
@@ -180,18 +181,23 @@ public class loginFrame extends javax.swing.JFrame {
 
     private void signInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signInKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Object selected = userRole.getSelectedItem();
-            if (selected.toString().equals("Doctor")){
-                this.dispose();
-                doctorFrame doctor = new doctorFrame();
-                doctor.setVisible(true);
-            }
-            if(selected.toString().equals("Receptionist")){
-                this.dispose();
-                receptionistFrame receptionist = new receptionistFrame();
-                receptionist.setVisible(true);
-            }
-            if(user.loginUsers(pass,usernameField.getText())){
+            String pass = new String(jPasswordField.getPassword());
+         Datasource user = new Datasource();
+        if(!user.open()) {
+            System.out.println("Can't open datasource");
+            return;
+        }
+        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+            this.dispose();
+            doctorFrame doctor = new doctorFrame();
+            doctor.setVisible(true);
+        }
+        if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
+            this.dispose();
+            receptionistFrame receptionist = new receptionistFrame();
+            receptionist.setVisible(true);
+        }
+        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
             this.dispose();
             adminFrame admin = new adminFrame();
             admin.setVisible(true);
@@ -200,19 +206,33 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_signInKeyPressed
 
     private void usernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Object selected = userRole.getSelectedItem();
-            if (selected.toString().equals("Doctor")){
-                this.dispose();
-                doctorFrame doctor = new doctorFrame();
-                doctor.setVisible(true);
+        if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if(usernameField.getText().equals("Username")){
+        usernameField.setText("");
             }
-            if(selected.toString().equals("Receptionist")){
-                this.dispose();
-                receptionistFrame receptionist = new receptionistFrame();
-                receptionist.setVisible(true);
-            }
-            if(user.loginUsers(pass,usernameField.getText())){
+        }
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           String pass = new String(jPasswordField.getPassword());
+         Datasource user = new Datasource();
+        if(!user.open()) {
+            System.out.println("Can't open datasource");
+            return;
+        }
+        if(!user.open()) {
+            System.out.println("Can't open datasource");
+            return;
+        }
+        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+            this.dispose();
+            doctorFrame doctor = new doctorFrame();
+            doctor.setVisible(true);
+        }
+        if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
+            this.dispose();
+            receptionistFrame receptionist = new receptionistFrame();
+            receptionist.setVisible(true);
+        }
+        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
             this.dispose();
             adminFrame admin = new adminFrame();
             admin.setVisible(true);
@@ -222,18 +242,27 @@ public class loginFrame extends javax.swing.JFrame {
 
     private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Object selected = userRole.getSelectedItem();
-            if (selected.toString().equals("Doctor")){
-                this.dispose();
-                doctorFrame doctor = new doctorFrame();
-                doctor.setVisible(true);
-            }
-            if(selected.toString().equals("Receptionist")){
-                this.dispose();
-                receptionistFrame receptionist = new receptionistFrame();
-                receptionist.setVisible(true);
-            }
-            if(user.loginUsers(pass,usernameField.getText()) && ){
+           String pass = new String(jPasswordField.getPassword());
+         Datasource user = new Datasource();
+        if(!user.open()) {
+            System.out.println("Can't open datasource");
+            return;
+        }
+        if(!user.open()) {
+            System.out.println("Can't open datasource");
+            return;
+        }
+        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+            this.dispose();
+            doctorFrame doctor = new doctorFrame();
+            doctor.setVisible(true);
+        }
+        if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
+            this.dispose();
+            receptionistFrame receptionist = new receptionistFrame();
+            receptionist.setVisible(true);
+        }
+        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
             this.dispose();
             adminFrame admin = new adminFrame();
             admin.setVisible(true);
@@ -251,11 +280,15 @@ public class loginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPasswordFieldFocusLost
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new loginFrame().setVisible(true);
+    private void usernameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameFieldMouseClicked
+         if(usernameField.getText().equals("Username")){
+        usernameField.setText("");
             }
+    }//GEN-LAST:event_usernameFieldMouseClicked
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new loginFrame().setVisible(true);
         });
     }
 
@@ -265,7 +298,6 @@ public class loginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDrag;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton signIn;
-    private javax.swing.JComboBox<String> userRole;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

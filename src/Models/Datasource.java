@@ -17,8 +17,7 @@ public class Datasource {
     public static final String COLUMN_USER_USERID = "userid";
     public static final String COLUMN_USER_EMAIL = "email";
     public static final String COLUMN_USER_PASSWORD = "password";
-
-
+    public static final String COLUMN_USER_ROLE = "role";
     private Connection conn;
 
     public boolean open() {
@@ -41,7 +40,7 @@ public class Datasource {
         }
     }
 
-    public boolean loginUsers(String pass, String loginId) {
+    public String loginUsers(String pass, String loginId) {
 
         try(Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS)) {
@@ -51,6 +50,8 @@ public class Datasource {
               Users user = new Users();
                 user.setUserid(results.getString(COLUMN_USER_USERID));
                 user.setPassword(results.getString(COLUMN_USER_PASSWORD));
+                user.setRole(results.getString(COLUMN_USER_ROLE));
+                
                 users.add(user);
             }
 
@@ -58,15 +59,20 @@ public class Datasource {
         for(Users user : users) {
             if(user.getPassword().equals(pass) && user.getUserid().equals(loginId)){
                 System.out.println("Password Right, BRO!");
-                return true;
+                return user.getRole();
+            }
+            else {
+                 System.out.println("no match");
             }
         }
-            return false;
+            return null;
 
         } catch(SQLException e) {
             System.out.println("Query failed: " + e.getMessage());
-            return false;
+            return null;
         }
 
     }
+    
+    
 }
