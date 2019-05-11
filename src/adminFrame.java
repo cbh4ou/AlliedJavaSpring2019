@@ -244,7 +244,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu.add(logout);
-        logout.setBounds(210, 761, 110, 40);
+        logout.setBounds(210, 761, 116, 40);
 
         tasksButton.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         tasksButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -447,7 +447,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         employeeRole.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         employeeRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Role", "Receptionist", "Doctor", "Admin" }));
         tranPanel1.add(employeeRole);
-        employeeRole.setBounds(190, 82, 170, 31);
+        employeeRole.setBounds(190, 82, 170, 30);
 
         fieldTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         fieldTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -565,6 +565,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         CardPanel.add(empSearchPanel, "card3");
 
+        profilePanel.setName(""); // NOI18N
         profilePanel.setOpaque(false);
         profilePanel.setLayout(null);
 

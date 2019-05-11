@@ -52,50 +52,48 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         patRegPanel = new javax.swing.JPanel();
         patRegTitle = new javax.swing.JLabel();
         tranPanel1 = new javax.swing.JPanel();
-        fNameTitle = new javax.swing.JLabel();
-        firstName = new javax.swing.JTextField();
-        lNameTitle = new javax.swing.JLabel();
-        lastName = new javax.swing.JTextField();
-        phoneNumber = new javax.swing.JTextField();
-        phoneTitle = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
-        emailTitle = new javax.swing.JLabel();
-        clearButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
-        roleTitle = new javax.swing.JLabel();
-        patientID = new javax.swing.JTextField();
-        mStatusTitle = new javax.swing.JLabel();
-        dob = new javax.swing.JTextField();
-        addressTitle = new javax.swing.JLabel();
-        address = new javax.swing.JTextField();
-        cityTitle = new javax.swing.JLabel();
-        city = new javax.swing.JTextField();
-        stateTitle = new javax.swing.JLabel();
-        state = new javax.swing.JTextField();
-        dobTitle = new javax.swing.JLabel();
-        maritalStatus = new javax.swing.JComboBox<>();
-        mStatusTitle1 = new javax.swing.JLabel();
-        maritalStatus1 = new javax.swing.JComboBox<>();
-        SSNTitle = new javax.swing.JLabel();
-        SSN = new javax.swing.JTextField();
-        insurancePanel = new javax.swing.JPanel();
-        policy = new javax.swing.JTextField();
-        policyTitle = new javax.swing.JLabel();
-        holderTitle = new javax.swing.JLabel();
-        policyHolder = new javax.swing.JTextField();
-        policyNumberTitle = new javax.swing.JLabel();
-        policyNumber = new javax.swing.JTextField();
-        raceTitle = new javax.swing.JLabel();
-        race = new javax.swing.JComboBox<>();
-        languageTitle = new javax.swing.JLabel();
-        language = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
-        eNameTitle = new javax.swing.JLabel();
-        emergencyName = new javax.swing.JTextField();
-        ePhoneTitle = new javax.swing.JLabel();
-        emergencyPhone = new javax.swing.JTextField();
-        emergencyRelation = new javax.swing.JTextField();
-        eRelationTitle = new javax.swing.JLabel();
+        fNameTitle1 = new javax.swing.JLabel();
+        firstName1 = new javax.swing.JTextField();
+        lNameTitle1 = new javax.swing.JLabel();
+        lastName1 = new javax.swing.JTextField();
+        phoneNumber1 = new javax.swing.JTextField();
+        phoneTitle1 = new javax.swing.JLabel();
+        email1 = new javax.swing.JTextField();
+        emailTitle1 = new javax.swing.JLabel();
+        clearButton1 = new javax.swing.JButton();
+        saveButton1 = new javax.swing.JButton();
+        roleTitle1 = new javax.swing.JLabel();
+        patientID1 = new javax.swing.JTextField();
+        mStatusTitle2 = new javax.swing.JLabel();
+        dob1 = new javax.swing.JTextField();
+        addressTitle1 = new javax.swing.JLabel();
+        address1 = new javax.swing.JTextField();
+        cityTitle1 = new javax.swing.JLabel();
+        city1 = new javax.swing.JTextField();
+        stateTitle1 = new javax.swing.JLabel();
+        state1 = new javax.swing.JTextField();
+        dobTitle1 = new javax.swing.JLabel();
+        maritalStatus2 = new javax.swing.JComboBox<>();
+        mStatusTitle3 = new javax.swing.JLabel();
+        maritalStatus3 = new javax.swing.JComboBox<>();
+        SSNTitle1 = new javax.swing.JLabel();
+        SSN1 = new javax.swing.JTextField();
+        insurancePanel1 = new javax.swing.JPanel();
+        policy1 = new javax.swing.JTextField();
+        policyTitle1 = new javax.swing.JLabel();
+        holderTitle1 = new javax.swing.JLabel();
+        policyHolder1 = new javax.swing.JTextField();
+        policyNumberTitle1 = new javax.swing.JLabel();
+        policyNumber1 = new javax.swing.JTextField();
+        raceTitle1 = new javax.swing.JLabel();
+        race1 = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        eNameTitle1 = new javax.swing.JLabel();
+        emergencyName1 = new javax.swing.JTextField();
+        ePhoneTitle1 = new javax.swing.JLabel();
+        emergencyPhone1 = new javax.swing.JTextField();
+        emergencyRelation1 = new javax.swing.JTextField();
+        eRelationTitle1 = new javax.swing.JLabel();
         patSearchPanel = new javax.swing.JPanel();
         patSearchTitle = new javax.swing.JLabel();
         tranPanel2 = new javax.swing.JPanel();
@@ -384,7 +382,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu.add(logout);
-        logout.setBounds(210, 761, 110, 40);
+        logout.setBounds(210, 761, 116, 40);
 
         getContentPane().add(menu);
         menu.setBounds(0, 0, 350, 820);
@@ -404,259 +402,247 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
 
         tranPanel1.setLayout(null);
 
-        fNameTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        fNameTitle.setForeground(new java.awt.Color(255, 255, 255));
-        fNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        fNameTitle.setText("First Name:");
-        tranPanel1.add(fNameTitle);
-        fNameTitle.setBounds(40, 80, 120, 21);
+        fNameTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        fNameTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        fNameTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fNameTitle1.setText("First Name:");
+        tranPanel1.add(fNameTitle1);
+        fNameTitle1.setBounds(40, 80, 120, 21);
 
-        firstName.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(firstName);
-        firstName.setBounds(170, 70, 170, 30);
+        firstName1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(firstName1);
+        firstName1.setBounds(170, 70, 170, 30);
 
-        lNameTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        lNameTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lNameTitle.setText("Last Name:");
-        tranPanel1.add(lNameTitle);
-        lNameTitle.setBounds(450, 80, 130, 21);
+        lNameTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        lNameTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        lNameTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lNameTitle1.setText("Last Name:");
+        tranPanel1.add(lNameTitle1);
+        lNameTitle1.setBounds(450, 80, 130, 21);
 
-        lastName.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(lastName);
-        lastName.setBounds(590, 70, 170, 30);
+        lastName1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(lastName1);
+        lastName1.setBounds(590, 70, 170, 30);
 
-        phoneNumber.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(phoneNumber);
-        phoneNumber.setBounds(750, 300, 170, 30);
+        phoneNumber1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(phoneNumber1);
+        phoneNumber1.setBounds(590, 290, 170, 30);
 
-        phoneTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        phoneTitle.setForeground(new java.awt.Color(255, 255, 255));
-        phoneTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phoneTitle.setText("Phone Number:");
-        tranPanel1.add(phoneTitle);
-        phoneTitle.setBounds(570, 310, 170, 21);
+        phoneTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        phoneTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        phoneTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        phoneTitle1.setText("Phone Number:");
+        tranPanel1.add(phoneTitle1);
+        phoneTitle1.setBounds(410, 290, 170, 21);
 
-        email.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(email);
-        email.setBounds(260, 300, 200, 30);
+        email1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(email1);
+        email1.setBounds(170, 290, 200, 30);
 
-        emailTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        emailTitle.setForeground(new java.awt.Color(255, 255, 255));
-        emailTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        emailTitle.setText("E-mail Address:");
-        tranPanel1.add(emailTitle);
-        emailTitle.setBounds(90, 310, 160, 21);
+        emailTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        emailTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        emailTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        emailTitle1.setText("E-mail Address:");
+        tranPanel1.add(emailTitle1);
+        emailTitle1.setBounds(0, 290, 160, 21);
 
-        clearButton.setBackground(new java.awt.Color(71, 177, 175));
-        clearButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        clearButton.setForeground(new java.awt.Color(255, 255, 255));
-        clearButton.setText("Clear");
-        clearButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tranPanel1.add(clearButton);
-        clearButton.setBounds(920, 90, 140, 50);
+        clearButton1.setBackground(new java.awt.Color(71, 177, 175));
+        clearButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        clearButton1.setForeground(new java.awt.Color(255, 255, 255));
+        clearButton1.setText("Clear");
+        clearButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tranPanel1.add(clearButton1);
+        clearButton1.setBounds(920, 90, 140, 50);
 
-        saveButton.setBackground(new java.awt.Color(71, 177, 175));
-        saveButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
-        saveButton.setText("Save");
-        saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tranPanel1.add(saveButton);
-        saveButton.setBounds(920, 20, 140, 50);
+        saveButton1.setBackground(new java.awt.Color(71, 177, 175));
+        saveButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        saveButton1.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton1.setText("Save");
+        saveButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tranPanel1.add(saveButton1);
+        saveButton1.setBounds(920, 20, 140, 50);
 
-        roleTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        roleTitle.setForeground(new java.awt.Color(255, 255, 255));
-        roleTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        roleTitle.setText("Patient ID:");
-        tranPanel1.add(roleTitle);
-        roleTitle.setBounds(20, 30, 140, 21);
+        roleTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        roleTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        roleTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        roleTitle1.setText("Patient ID:");
+        tranPanel1.add(roleTitle1);
+        roleTitle1.setBounds(20, 30, 140, 21);
 
-        patientID.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(patientID);
-        patientID.setBounds(170, 20, 130, 30);
+        patientID1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(patientID1);
+        patientID1.setBounds(170, 20, 130, 30);
 
-        mStatusTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        mStatusTitle.setForeground(new java.awt.Color(255, 255, 255));
-        mStatusTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        mStatusTitle.setText("Marital Status:");
-        tranPanel1.add(mStatusTitle);
-        mStatusTitle.setBounds(280, 190, 160, 21);
+        mStatusTitle2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        mStatusTitle2.setForeground(new java.awt.Color(255, 255, 255));
+        mStatusTitle2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        mStatusTitle2.setText("Marital Status:");
+        tranPanel1.add(mStatusTitle2);
+        mStatusTitle2.setBounds(420, 170, 160, 21);
 
-        dob.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(dob);
-        dob.setBounds(150, 180, 130, 30);
+        dob1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(dob1);
+        dob1.setBounds(170, 120, 130, 30);
 
-        addressTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        addressTitle.setForeground(new java.awt.Color(255, 255, 255));
-        addressTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        addressTitle.setText("Street Address:");
-        tranPanel1.add(addressTitle);
-        addressTitle.setBounds(0, 250, 160, 21);
+        addressTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        addressTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        addressTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        addressTitle1.setText("Street Address:");
+        tranPanel1.add(addressTitle1);
+        addressTitle1.setBounds(0, 250, 160, 21);
 
-        address.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(address);
-        address.setBounds(170, 240, 390, 30);
+        address1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(address1);
+        address1.setBounds(170, 240, 360, 30);
 
-        cityTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        cityTitle.setForeground(new java.awt.Color(255, 255, 255));
-        cityTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cityTitle.setText("City:");
-        tranPanel1.add(cityTitle);
-        cityTitle.setBounds(580, 250, 70, 21);
+        cityTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        cityTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        cityTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cityTitle1.setText("City:");
+        tranPanel1.add(cityTitle1);
+        cityTitle1.setBounds(510, 240, 70, 21);
 
-        city.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(city);
-        city.setBounds(660, 240, 150, 30);
+        city1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(city1);
+        city1.setBounds(590, 240, 150, 30);
 
-        stateTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        stateTitle.setForeground(new java.awt.Color(255, 255, 255));
-        stateTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        stateTitle.setText("State:");
-        tranPanel1.add(stateTitle);
-        stateTitle.setBounds(840, 250, 70, 21);
+        stateTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        stateTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        stateTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        stateTitle1.setText("State:");
+        tranPanel1.add(stateTitle1);
+        stateTitle1.setBounds(740, 240, 70, 21);
 
-        state.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(state);
-        state.setBounds(920, 240, 120, 30);
+        state1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(state1);
+        state1.setBounds(810, 240, 120, 30);
 
-        dobTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        dobTitle.setForeground(new java.awt.Color(255, 255, 255));
-        dobTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        dobTitle.setText("Date of Birth:");
-        tranPanel1.add(dobTitle);
-        dobTitle.setBounds(0, 190, 140, 21);
+        dobTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        dobTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        dobTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dobTitle1.setText("Date of Birth:");
+        tranPanel1.add(dobTitle1);
+        dobTitle1.setBounds(20, 130, 140, 21);
 
-        maritalStatus.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        maritalStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Status", "Single", "Married" }));
-        tranPanel1.add(maritalStatus);
-        maritalStatus.setBounds(450, 184, 150, 31);
+        maritalStatus2.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        maritalStatus2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Status", "Single", "Married" }));
+        tranPanel1.add(maritalStatus2);
+        maritalStatus2.setBounds(590, 170, 150, 30);
 
-        mStatusTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        mStatusTitle1.setForeground(new java.awt.Color(255, 255, 255));
-        mStatusTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        mStatusTitle1.setText("Gender:");
-        tranPanel1.add(mStatusTitle1);
-        mStatusTitle1.setBounds(610, 190, 100, 21);
+        mStatusTitle3.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        mStatusTitle3.setForeground(new java.awt.Color(255, 255, 255));
+        mStatusTitle3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        mStatusTitle3.setText("Gender:");
+        tranPanel1.add(mStatusTitle3);
+        mStatusTitle3.setBounds(480, 120, 100, 21);
 
-        maritalStatus1.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        maritalStatus1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
-        tranPanel1.add(maritalStatus1);
-        maritalStatus1.setBounds(720, 180, 150, 31);
+        maritalStatus3.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        maritalStatus3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
+        tranPanel1.add(maritalStatus3);
+        maritalStatus3.setBounds(590, 120, 150, 30);
 
-        SSNTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        SSNTitle.setForeground(new java.awt.Color(255, 255, 255));
-        SSNTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        SSNTitle.setText("Social Security:");
-        tranPanel1.add(SSNTitle);
-        SSNTitle.setBounds(420, 30, 160, 21);
+        SSNTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        SSNTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        SSNTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        SSNTitle1.setText("Social Security:");
+        tranPanel1.add(SSNTitle1);
+        SSNTitle1.setBounds(420, 30, 160, 21);
 
-        SSN.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(SSN);
-        SSN.setBounds(590, 20, 140, 30);
+        SSN1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(SSN1);
+        SSN1.setBounds(590, 20, 140, 30);
 
-        insurancePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insurance Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        insurancePanel.setOpaque(false);
-        insurancePanel.setLayout(null);
+        insurancePanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insurance Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        insurancePanel1.setOpaque(false);
+        insurancePanel1.setLayout(null);
 
-        policy.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        insurancePanel.add(policy);
-        policy.setBounds(180, 50, 250, 30);
+        policy1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        insurancePanel1.add(policy1);
+        policy1.setBounds(180, 50, 250, 30);
 
-        policyTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        policyTitle.setForeground(new java.awt.Color(255, 255, 255));
-        policyTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        policyTitle.setText("Primary Policy:");
-        insurancePanel.add(policyTitle);
-        policyTitle.setBounds(10, 60, 160, 21);
+        policyTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        policyTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        policyTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        policyTitle1.setText("Primary Policy:");
+        insurancePanel1.add(policyTitle1);
+        policyTitle1.setBounds(10, 60, 160, 21);
 
-        holderTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        holderTitle.setForeground(new java.awt.Color(255, 255, 255));
-        holderTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        holderTitle.setText("Policy Holder:");
-        insurancePanel.add(holderTitle);
-        holderTitle.setBounds(10, 120, 160, 21);
+        holderTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        holderTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        holderTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        holderTitle1.setText("Policy Holder:");
+        insurancePanel1.add(holderTitle1);
+        holderTitle1.setBounds(10, 120, 160, 21);
 
-        policyHolder.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        insurancePanel.add(policyHolder);
-        policyHolder.setBounds(180, 110, 250, 30);
+        policyHolder1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        insurancePanel1.add(policyHolder1);
+        policyHolder1.setBounds(180, 110, 250, 30);
 
-        policyNumberTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        policyNumberTitle.setForeground(new java.awt.Color(255, 255, 255));
-        policyNumberTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        policyNumberTitle.setText("Policy Number:");
-        insurancePanel.add(policyNumberTitle);
-        policyNumberTitle.setBounds(10, 180, 160, 21);
+        policyNumberTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        policyNumberTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        policyNumberTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        policyNumberTitle1.setText("Policy Number:");
+        insurancePanel1.add(policyNumberTitle1);
+        policyNumberTitle1.setBounds(10, 180, 160, 21);
 
-        policyNumber.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        insurancePanel.add(policyNumber);
-        policyNumber.setBounds(180, 170, 250, 30);
+        policyNumber1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        insurancePanel1.add(policyNumber1);
+        policyNumber1.setBounds(180, 170, 250, 30);
 
-        tranPanel1.add(insurancePanel);
-        insurancePanel.setBounds(40, 390, 470, 240);
+        tranPanel1.add(insurancePanel1);
+        insurancePanel1.setBounds(40, 390, 470, 240);
 
-        raceTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        raceTitle.setForeground(new java.awt.Color(255, 255, 255));
-        raceTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        raceTitle.setText("Ethnic Race:");
-        tranPanel1.add(raceTitle);
-        raceTitle.setBounds(60, 130, 160, 21);
+        raceTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        raceTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        raceTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        raceTitle1.setText("Ethnic Race:");
+        tranPanel1.add(raceTitle1);
+        raceTitle1.setBounds(0, 180, 160, 21);
 
-        race.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        race.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Race", "Caucasian", "African American", "Asian", "Native Hawaiian", "Pacific Islander", "American Indian", "Alaskan Native", "Hispanic", "Other" }));
-        tranPanel1.add(race);
-        race.setBounds(230, 124, 200, 31);
+        race1.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        race1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Race", "Caucasian", "African American", "Asian", "Native Hawaiian/Pacific Islander", "American Indian/Alaskan Native", "Hispanic", "Other" }));
+        tranPanel1.add(race1);
+        race1.setBounds(170, 170, 200, 30);
 
-        languageTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        languageTitle.setForeground(new java.awt.Color(255, 255, 255));
-        languageTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        languageTitle.setText("Language:");
-        tranPanel1.add(languageTitle);
-        languageTitle.setBounds(450, 130, 160, 21);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Emergency Contact", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(null);
 
-        language.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        language.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Language", "English", "Spanish", "French", "Arabic", "Chinese", "Korean", "Japanese", "Sign Language", "Other" }));
-        tranPanel1.add(language);
-        language.setBounds(620, 124, 180, 31);
+        eNameTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        eNameTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        eNameTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        eNameTitle1.setText("Name:");
+        jPanel2.add(eNameTitle1);
+        eNameTitle1.setBounds(100, 60, 100, 21);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Emergency Contact", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(null);
+        emergencyName1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(emergencyName1);
+        emergencyName1.setBounds(210, 50, 220, 30);
 
-        eNameTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        eNameTitle.setForeground(new java.awt.Color(255, 255, 255));
-        eNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        eNameTitle.setText("Name:");
-        jPanel1.add(eNameTitle);
-        eNameTitle.setBounds(10, 60, 100, 21);
+        ePhoneTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        ePhoneTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        ePhoneTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ePhoneTitle1.setText("Phone Number:");
+        jPanel2.add(ePhoneTitle1);
+        ePhoneTitle1.setBounds(40, 120, 160, 21);
 
-        emergencyName.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jPanel1.add(emergencyName);
-        emergencyName.setBounds(120, 50, 310, 30);
+        emergencyPhone1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(emergencyPhone1);
+        emergencyPhone1.setBounds(210, 110, 220, 30);
 
-        ePhoneTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        ePhoneTitle.setForeground(new java.awt.Color(255, 255, 255));
-        ePhoneTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        ePhoneTitle.setText("Phone Number:");
-        jPanel1.add(ePhoneTitle);
-        ePhoneTitle.setBounds(10, 120, 160, 21);
+        emergencyRelation1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(emergencyRelation1);
+        emergencyRelation1.setBounds(210, 170, 220, 30);
 
-        emergencyPhone.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jPanel1.add(emergencyPhone);
-        emergencyPhone.setBounds(180, 110, 250, 30);
+        eRelationTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        eRelationTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        eRelationTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        eRelationTitle1.setText("Relation to Patient:");
+        jPanel2.add(eRelationTitle1);
+        eRelationTitle1.setBounds(10, 180, 190, 21);
 
-        emergencyRelation.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jPanel1.add(emergencyRelation);
-        emergencyRelation.setBounds(210, 170, 220, 30);
-
-        eRelationTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        eRelationTitle.setForeground(new java.awt.Color(255, 255, 255));
-        eRelationTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        eRelationTitle.setText("Relation to Patient:");
-        jPanel1.add(eRelationTitle);
-        eRelationTitle.setBounds(10, 180, 190, 21);
-
-        tranPanel1.add(jPanel1);
-        jPanel1.setBounds(570, 390, 470, 240);
+        tranPanel1.add(jPanel2);
+        jPanel2.setBounds(570, 390, 470, 240);
 
         patRegPanel.add(tranPanel1);
         tranPanel1.setBounds(10, 90, 1080, 683);
@@ -1221,45 +1207,45 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JButton IDPButton;
     private javax.swing.JButton ODPButton;
     private javax.swing.JLabel ProfileID;
-    private javax.swing.JTextField SSN;
-    private javax.swing.JLabel SSNTitle;
+    private javax.swing.JTextField SSN1;
+    private javax.swing.JLabel SSNTitle1;
     private javax.swing.JButton addButton;
-    private javax.swing.JTextField address;
-    private javax.swing.JLabel addressTitle;
+    private javax.swing.JTextField address1;
+    private javax.swing.JLabel addressTitle1;
     private javax.swing.JLabel bg1;
-    private javax.swing.JTextField city;
-    private javax.swing.JLabel cityTitle;
-    private javax.swing.JButton clearButton;
+    private javax.swing.JTextField city1;
+    private javax.swing.JLabel cityTitle1;
+    private javax.swing.JButton clearButton1;
     private javax.swing.JPanel clockDate;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton dischargeButton;
-    private javax.swing.JTextField dob;
-    private javax.swing.JLabel dobTitle;
-    private javax.swing.JLabel eNameTitle;
-    private javax.swing.JLabel ePhoneTitle;
-    private javax.swing.JLabel eRelationTitle;
+    private javax.swing.JTextField dob1;
+    private javax.swing.JLabel dobTitle1;
+    private javax.swing.JLabel eNameTitle1;
+    private javax.swing.JLabel ePhoneTitle1;
+    private javax.swing.JLabel eRelationTitle1;
     private javax.swing.JButton editButton;
-    private javax.swing.JTextField email;
-    private javax.swing.JLabel emailTitle;
-    private javax.swing.JTextField emergencyName;
-    private javax.swing.JTextField emergencyPhone;
-    private javax.swing.JTextField emergencyRelation;
+    private javax.swing.JTextField email1;
+    private javax.swing.JLabel emailTitle1;
+    private javax.swing.JTextField emergencyName1;
+    private javax.swing.JTextField emergencyPhone1;
+    private javax.swing.JTextField emergencyRelation1;
     private javax.swing.JLabel exit;
-    private javax.swing.JLabel fNameTitle;
-    private javax.swing.JTextField firstName;
+    private javax.swing.JLabel fNameTitle1;
+    private javax.swing.JTextField firstName1;
     private javax.swing.JButton getPatButton;
-    private javax.swing.JLabel holderTitle;
+    private javax.swing.JLabel holderTitle1;
     private javax.swing.JPanel home;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel homeTitle;
-    private javax.swing.JPanel insurancePanel;
+    private javax.swing.JPanel insurancePanel1;
     private javax.swing.JLabel jLabelClock;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelDrag;
     private javax.swing.JList<String> jList;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1271,17 +1257,15 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextArea jTextArea;
-    private javax.swing.JLabel lNameTitle;
-    private javax.swing.JComboBox<String> language;
-    private javax.swing.JLabel languageTitle;
-    private javax.swing.JTextField lastName;
+    private javax.swing.JLabel lNameTitle1;
+    private javax.swing.JTextField lastName1;
     private javax.swing.JPanel logout;
     private javax.swing.JLabel logoutIcon;
     private javax.swing.JLabel logoutLabel;
-    private javax.swing.JLabel mStatusTitle;
-    private javax.swing.JLabel mStatusTitle1;
-    private javax.swing.JComboBox<String> maritalStatus;
-    private javax.swing.JComboBox<String> maritalStatus1;
+    private javax.swing.JLabel mStatusTitle2;
+    private javax.swing.JLabel mStatusTitle3;
+    private javax.swing.JComboBox<String> maritalStatus2;
+    private javax.swing.JComboBox<String> maritalStatus3;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel pQueueButton;
     private javax.swing.JLabel pQueueIcon;
@@ -1301,14 +1285,14 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JPanel patSearchPanel;
     private javax.swing.JTable patSearchTable;
     private javax.swing.JLabel patSearchTitle;
-    private javax.swing.JTextField patientID;
-    private javax.swing.JTextField phoneNumber;
-    private javax.swing.JLabel phoneTitle;
-    private javax.swing.JTextField policy;
-    private javax.swing.JTextField policyHolder;
-    private javax.swing.JTextField policyNumber;
-    private javax.swing.JLabel policyNumberTitle;
-    private javax.swing.JLabel policyTitle;
+    private javax.swing.JTextField patientID1;
+    private javax.swing.JTextField phoneNumber1;
+    private javax.swing.JLabel phoneTitle1;
+    private javax.swing.JTextField policy1;
+    private javax.swing.JTextField policyHolder1;
+    private javax.swing.JTextField policyNumber1;
+    private javax.swing.JLabel policyNumberTitle1;
+    private javax.swing.JLabel policyTitle1;
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel profileEmail;
     private javax.swing.JLabel profileEmailTitle;
@@ -1321,11 +1305,11 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel profileRole;
     private javax.swing.JLabel profileRoleTitle;
     private javax.swing.JLabel profileTitle;
-    private javax.swing.JComboBox<String> race;
-    private javax.swing.JLabel raceTitle;
+    private javax.swing.JComboBox<String> race1;
+    private javax.swing.JLabel raceTitle1;
     private javax.swing.JButton reloadButton;
-    private javax.swing.JLabel roleTitle;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel roleTitle1;
+    private javax.swing.JButton saveButton1;
     private javax.swing.JLabel scheduleButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchDoctor;
@@ -1337,8 +1321,8 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel searchLastNameTitle1;
     private javax.swing.JTextField searchPatID;
     private javax.swing.JTextField searchPhone;
-    private javax.swing.JTextField state;
-    private javax.swing.JLabel stateTitle;
+    private javax.swing.JTextField state1;
+    private javax.swing.JLabel stateTitle1;
     private javax.swing.JLabel tasksButton;
     private javax.swing.JPanel tasksPanel;
     private javax.swing.JLabel tasksTitle;

@@ -1,13 +1,41 @@
 package Models;
 
 public class Users {
-
+    
+    private static String currentUser;
     private int id;
     private String userid;
     private String email;
     private String password;
     private String role;
+    private int phone;
+    private String firstName;
+    private String lastName;
 
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     public String getRole() {
         return role;
     }
@@ -46,4 +74,17 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public static String getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(String currentUser) {
+        Users.currentUser = currentUser;
+    }
+    
+    public static int getUserCount(){
+      return 0;
+    }
+    
 }
