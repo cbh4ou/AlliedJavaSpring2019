@@ -1,11 +1,29 @@
+import Models.Datasource;
 
 import java.awt.event.KeyEvent;
 
 public class loginFrame extends javax.swing.JFrame {
     int mouseX;
     int mouseY;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
+    private javax.swing.JLabel exit;
+    private javax.swing.JLabel jLabelDrag;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JButton signIn;
+    private javax.swing.JComboBox<String> userRole;
+    private javax.swing.JTextField usernameField;
+
     public loginFrame() {
         initComponents();
+    }
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new loginFrame().setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +70,7 @@ public class loginFrame extends javax.swing.JFrame {
         jLabelDrag.setBounds(0, 0, 1450, 30);
 
         userRole.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        userRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Role", "Doctor", "Receptionist", "Admin" }));
+        userRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"User Role", "Doctor", "Receptionist", "Admin"}));
         getContentPane().add(userRole);
         userRole.setBounds(640, 390, 190, 30);
 
@@ -67,6 +85,7 @@ public class loginFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 usernameFieldFocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 usernameFieldFocusLost(evt);
             }
@@ -104,6 +123,7 @@ public class loginFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jPasswordFieldFocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jPasswordFieldFocusLost(evt);
             }
@@ -129,7 +149,7 @@ public class loginFrame extends javax.swing.JFrame {
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
 
-        this.setLocation(x-mouseX, y-mouseY);
+        this.setLocation(x - mouseX, y - mouseY);
     }//GEN-LAST:event_jLabelDragMouseDragged
 
     private void jLabelDragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDragMousePressed
@@ -146,44 +166,52 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFieldFocusGained
 
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusLost
-        if (usernameField.getText().isEmpty()){
+        if (usernameField.getText().isEmpty()) {
             usernameField.setText(" Username");
         }
     }//GEN-LAST:event_usernameFieldFocusLost
 
     private void signInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInMouseClicked
+
         Object selected = userRole.getSelectedItem();
-        if (selected.toString().equals("Doctor")){
+        Datasource user = new Datasource();
+        if(!user.open()) {
+            System.out.println("Can't open datasource");
+            return;
+        }
+       /* if (selected.toString().equals("Doctor")) {
             this.dispose();
             doctorFrame doctor = new doctorFrame();
             doctor.setVisible(true);
         }
-        if(selected.toString().equals("Receptionist")){
+        if (selected.toString().equals("Receptionist")) {
             this.dispose();
             receptionistFrame receptionist = new receptionistFrame();
             receptionist.setVisible(true);
-        }
-        if(selected.toString().equals("Admin")){
+        }*/
+        if (user.loginUsers("admin",usernameField.getText())) {
             this.dispose();
             adminFrame admin = new adminFrame();
             admin.setVisible(true);
         }
+
+        user.close();
     }//GEN-LAST:event_signInMouseClicked
 
     private void signInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signInKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Object selected = userRole.getSelectedItem();
-            if (selected.toString().equals("Doctor")){
+            if (selected.toString().equals("Doctor")) {
                 this.dispose();
                 doctorFrame doctor = new doctorFrame();
                 doctor.setVisible(true);
             }
-            if(selected.toString().equals("Receptionist")){
+            if (selected.toString().equals("Receptionist")) {
                 this.dispose();
                 receptionistFrame receptionist = new receptionistFrame();
                 receptionist.setVisible(true);
             }
-            if(selected.toString().equals("Admin")){
+            if (selected.toString().equals("Admin")) {
                 this.dispose();
                 adminFrame admin = new adminFrame();
                 admin.setVisible(true);
@@ -192,19 +220,19 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_signInKeyPressed
 
     private void usernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Object selected = userRole.getSelectedItem();
-            if (selected.toString().equals("Doctor")){
+            if (selected.toString().equals("Doctor")) {
                 this.dispose();
                 doctorFrame doctor = new doctorFrame();
                 doctor.setVisible(true);
             }
-            if(selected.toString().equals("Receptionist")){
+            if (selected.toString().equals("Receptionist")) {
                 this.dispose();
                 receptionistFrame receptionist = new receptionistFrame();
                 receptionist.setVisible(true);
             }
-            if(selected.toString().equals("Admin")){
+            if (selected.toString().equals("Admin")) {
                 this.dispose();
                 adminFrame admin = new adminFrame();
                 admin.setVisible(true);
@@ -213,19 +241,19 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFieldKeyPressed
 
     private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Object selected = userRole.getSelectedItem();
-            if (selected.toString().equals("Doctor")){
+            if (selected.toString().equals("Doctor")) {
                 this.dispose();
                 doctorFrame doctor = new doctorFrame();
                 doctor.setVisible(true);
             }
-            if(selected.toString().equals("Receptionist")){
+            if (selected.toString().equals("Receptionist")) {
                 this.dispose();
                 receptionistFrame receptionist = new receptionistFrame();
                 receptionist.setVisible(true);
             }
-            if(selected.toString().equals("Admin")){
+            if (selected.toString().equals("Admin")) {
                 this.dispose();
                 adminFrame admin = new adminFrame();
                 admin.setVisible(true);
@@ -238,26 +266,9 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldFocusGained
 
     private void jPasswordFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusLost
-        if (jPasswordField.getText().isEmpty()){
+        if (jPasswordField.getPassword().toString().isEmpty()) {
             jPasswordField.setText(" Password");
         }
     }//GEN-LAST:event_jPasswordFieldFocusLost
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new loginFrame().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel background;
-    private javax.swing.JLabel exit;
-    private javax.swing.JLabel jLabelDrag;
-    private javax.swing.JPasswordField jPasswordField;
-    private javax.swing.JButton signIn;
-    private javax.swing.JComboBox<String> userRole;
-    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
