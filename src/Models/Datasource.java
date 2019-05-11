@@ -40,8 +40,8 @@ public class Datasource {
         }
     }
 
-    public String loginUsers(String pass, String loginId) {
-
+    public String loginUsers(String pass, String loginId) throws SQLException {
+        
         try(Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS)) {
 
@@ -73,6 +73,70 @@ public class Datasource {
         }
 
     }
-    
-    
+    public String queryUser(String pass, String loginId) throws SQLException {
+        
+        try(Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS)) {
+
+            List<Users> users = new ArrayList<>();
+            while(results.next()) {
+              Users user = new Users();
+                user.setUserid(results.getString(COLUMN_USER_USERID));
+                user.setPassword(results.getString(COLUMN_USER_PASSWORD));
+                user.setRole(results.getString(COLUMN_USER_ROLE));
+                
+                users.add(user);
+            }
+
+
+        for(Users user : users) {
+            if(user.getPassword().equals(pass) && user.getUserid().equals(loginId)){
+                System.out.println("Password Right, BRO!");
+                return user.getRole();
+            }
+            else {
+                 System.out.println("no match");
+            }
+        }
+            return null;
+
+        } catch(SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+            return null;
+        }
+
+    }
+     public String insertUser(String pass, String loginId) throws SQLException {
+        
+        try(Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS)) {
+
+            List<Users> users = new ArrayList<>();
+            while(results.next()) {
+              Users user = new Users();
+                user.setUserid(results.getString(COLUMN_USER_USERID));
+                user.setPassword(results.getString(COLUMN_USER_PASSWORD));
+                user.setRole(results.getString(COLUMN_USER_ROLE));
+                
+                users.add(user);
+            }
+
+
+        for(Users user : users) {
+            if(user.getPassword().equals(pass) && user.getUserid().equals(loginId)){
+                System.out.println("Password Right, BRO!");
+                return user.getRole();
+            }
+            else {
+                 System.out.println("no match");
+            }
+        }
+            return null;
+
+        } catch(SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+            return null;
+        }
+
+    }
 }

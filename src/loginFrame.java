@@ -1,11 +1,15 @@
 
 import Models.Datasource;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class loginFrame extends javax.swing.JFrame {
     int mouseX;
     int mouseY;
+    private static int firstInstance = 1;
     public loginFrame() {
         initComponents();
     }
@@ -143,65 +147,74 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void usernameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusGained
-
-             usernameField.setText("Username");
-   
+         if(firstInstance == 1){
+        usernameField.setText("Username"); 
+        firstInstance++;
+         }
     }//GEN-LAST:event_usernameFieldFocusGained
 
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusLost
-        if (usernameField.getText().isEmpty()){
-            usernameField.setText("Username");
-        }
+
     }//GEN-LAST:event_usernameFieldFocusLost
 
     private void signInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInMouseClicked
-        String pass = new String(jPasswordField.getPassword());
-         Datasource user = new Datasource();
-          System.out.println(pass + " , " + usernameField.getText());
-        if(!user.open()) {
-            System.out.println("Can't open datasource");
-            return;
-        }
-        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
-        }
-        if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
+        try {
+            String pass = new String(jPasswordField.getPassword());
+            Datasource user = new Datasource();
+            System.out.println(pass + " , " + usernameField.getText());
+            if(!user.open()) {
+                System.out.println("Can't open datasource");
+                return;
+            }
+            if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+                this.dispose();
+                doctorFrame doctor = new doctorFrame();
+                doctor.setVisible(true);
+            }
+            if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
+                this.dispose();
+                receptionistFrame receptionist = new receptionistFrame();
+                receptionist.setVisible(true);
+            }
+            if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
+                this.dispose();
+                adminFrame admin = new adminFrame();
+                admin.setVisible(true);
+            }
+            user.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(loginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_signInMouseClicked
 
     private void signInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signInKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String pass = new String(jPasswordField.getPassword());
-         Datasource user = new Datasource();
-        if(!user.open()) {
-            System.out.println("Can't open datasource");
-            return;
-        }
-        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
-        }
-        if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
-        }
+            try {
+                String pass = new String(jPasswordField.getPassword());
+                Datasource user = new Datasource();
+                if(!user.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+                if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    doctorFrame doctor = new doctorFrame();
+                    doctor.setVisible(true);
+                }
+                if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    receptionistFrame receptionist = new receptionistFrame();
+                    receptionist.setVisible(true);
+                }
+                if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    adminFrame admin = new adminFrame();
+                    admin.setVisible(true);
+                }
+                user.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(loginFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_signInKeyPressed
 
@@ -212,61 +225,63 @@ public class loginFrame extends javax.swing.JFrame {
             }
         }
          if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           String pass = new String(jPasswordField.getPassword());
-         Datasource user = new Datasource();
-        if(!user.open()) {
-            System.out.println("Can't open datasource");
-            return;
-        }
-        if(!user.open()) {
-            System.out.println("Can't open datasource");
-            return;
-        }
-        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
-        }
-        if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
-        }
+            try {
+                String pass = new String(jPasswordField.getPassword());
+                Datasource user = new Datasource();
+                if(!user.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+                if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    doctorFrame doctor = new doctorFrame();
+                    doctor.setVisible(true);
+                }
+                if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    receptionistFrame receptionist = new receptionistFrame();
+                    receptionist.setVisible(true);
+                }
+                if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    adminFrame admin = new adminFrame();
+                    admin.setVisible(true);
+                }
+                user.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(loginFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_usernameFieldKeyPressed
 
     private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           String pass = new String(jPasswordField.getPassword());
-         Datasource user = new Datasource();
-        if(!user.open()) {
-            System.out.println("Can't open datasource");
-            return;
-        }
-        if(!user.open()) {
-            System.out.println("Can't open datasource");
-            return;
-        }
-        if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            doctorFrame doctor = new doctorFrame();
-            doctor.setVisible(true);
-        }
-        if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            receptionistFrame receptionist = new receptionistFrame();
-            receptionist.setVisible(true);
-        }
-        if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
-            this.dispose();
-            adminFrame admin = new adminFrame();
-            admin.setVisible(true);
-        }
+            try {
+                String pass = new String(jPasswordField.getPassword());
+                Datasource user = new Datasource();
+                if(!user.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+                if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    doctorFrame doctor = new doctorFrame();
+                    doctor.setVisible(true);
+                }
+                if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    receptionistFrame receptionist = new receptionistFrame();
+                    receptionist.setVisible(true);
+                }
+                if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
+                    this.dispose();
+                    adminFrame admin = new adminFrame();
+                    admin.setVisible(true);
+                }
+                user.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(loginFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jPasswordFieldKeyPressed
 
