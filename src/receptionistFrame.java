@@ -1,3 +1,4 @@
+import Models.Users;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Locale;
@@ -15,10 +16,9 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     String previousString = "";
     int mouseX;
     int mouseY;
-    
-    public receptionistFrame() {
-        Thread t = new Thread(this);
-        t.start();
+    private final Users currentUser;
+    public receptionistFrame(Users currentUser) {
+        this.currentUser = currentUser;
         initComponents();
         CardPanel.removeAll();
         CardPanel.add(homePanel);
@@ -153,6 +153,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         homePanel = new javax.swing.JPanel();
         homeTitle = new javax.swing.JLabel();
         tranPanel7 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1029,6 +1030,13 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         homeTitle.setBounds(360, 15, 380, 70);
 
         tranPanel7.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText(currentUser.welcomeString());
+        tranPanel7.add(jLabel2);
+        jLabel2.setBounds(20, 40, 1010, 60);
+
         homePanel.add(tranPanel7);
         tranPanel7.setBounds(10, 90, 1080, 683);
         tranPanel7.setBackground(new Color(0,0,0,65));
@@ -1193,6 +1201,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel homeTitle;
     private javax.swing.JLabel homeTitle1;
     private javax.swing.JPanel insurancePanel;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelClock;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelDrag;

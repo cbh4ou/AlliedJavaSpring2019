@@ -1,5 +1,6 @@
 
 import Models.Datasource;
+import Models.Users;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -161,26 +162,28 @@ public class loginFrame extends javax.swing.JFrame {
         try {
             String pass = new String(jPasswordField.getPassword());
             Datasource user = new Datasource();
-            System.out.println(pass + " , " + usernameField.getText());
+            System.out.println("PASSWORD: " + pass + " , " + "USERNAME:" + usernameField.getText());
             if(!user.open()) {
                 System.out.println("Can't open datasource");
                 return;
             }
             if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
-                doctorFrame doctor = new doctorFrame();
+                doctorFrame doctor = new doctorFrame(user.queryUser(usernameField.getText()));
                 doctor.setVisible(true);
             }
             if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
-                receptionistFrame receptionist = new receptionistFrame();
+                receptionistFrame receptionist = new receptionistFrame(user.queryUser(usernameField.getText()));
                 receptionist.setVisible(true);
             }
             if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
-                adminFrame admin = new adminFrame();
+                System.out.println(Users.getCurrentUser());
+                adminFrame admin = new adminFrame(user.queryUser(usernameField.getText()));
                 admin.setVisible(true);
             }
+            
             user.close();
         } catch (SQLException ex) {
             Logger.getLogger(loginFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,17 +201,17 @@ public class loginFrame extends javax.swing.JFrame {
                 }
                 if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    doctorFrame doctor = new doctorFrame();
+                    doctorFrame doctor = new doctorFrame(user.queryUser(usernameField.getText()));
                     doctor.setVisible(true);
                 }
                 if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    receptionistFrame receptionist = new receptionistFrame();
+                    receptionistFrame receptionist = new receptionistFrame(user.queryUser(usernameField.getText()));
                     receptionist.setVisible(true);
                 }
                 if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    adminFrame admin = new adminFrame();
+                    adminFrame admin = new adminFrame(user.queryUser(usernameField.getText()));
                     admin.setVisible(true);
                 }
                 user.close();
@@ -234,17 +237,17 @@ public class loginFrame extends javax.swing.JFrame {
                 }
                 if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    doctorFrame doctor = new doctorFrame();
+                    doctorFrame doctor = new doctorFrame(user.queryUser(usernameField.getText()));
                     doctor.setVisible(true);
                 }
                 if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    receptionistFrame receptionist = new receptionistFrame();
+                    receptionistFrame receptionist = new receptionistFrame(user.queryUser(usernameField.getText()));
                     receptionist.setVisible(true);
                 }
                 if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    adminFrame admin = new adminFrame();
+                    adminFrame admin = new adminFrame(user.queryUser(usernameField.getText()));
                     admin.setVisible(true);
                 }
                 user.close();
@@ -265,17 +268,17 @@ public class loginFrame extends javax.swing.JFrame {
                 }
                 if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    doctorFrame doctor = new doctorFrame();
+                    doctorFrame doctor = new doctorFrame(user.queryUser(usernameField.getText()));
                     doctor.setVisible(true);
                 }
                 if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    receptionistFrame receptionist = new receptionistFrame();
+                    receptionistFrame receptionist = new receptionistFrame(user.queryUser(usernameField.getText()));
                     receptionist.setVisible(true);
                 }
                 if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
                     this.dispose();
-                    adminFrame admin = new adminFrame();
+                    adminFrame admin = new adminFrame(user.queryUser(usernameField.getText()));
                     admin.setVisible(true);
                 }
                 user.close();

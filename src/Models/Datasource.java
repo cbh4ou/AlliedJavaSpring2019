@@ -18,6 +18,9 @@ public class Datasource {
     public static final String COLUMN_USER_EMAIL = "email";
     public static final String COLUMN_USER_PASSWORD = "password";
     public static final String COLUMN_USER_ROLE = "role";
+    public static final String COLUMN_USER_PHONE = "phone";
+    public static final String COLUMN_USER_LASTNAME = "lastName";
+    public static final String COLUMN_USER_FIRSTNAME = "firstName";
     private Connection conn;
 
     public boolean open() {
@@ -51,14 +54,18 @@ public class Datasource {
                 user.setUserid(results.getString(COLUMN_USER_USERID));
                 user.setPassword(results.getString(COLUMN_USER_PASSWORD));
                 user.setRole(results.getString(COLUMN_USER_ROLE));
-                
+                user.setEmail(results.getString(COLUMN_USER_EMAIL));
+                user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));
+                user.setLastName(results.getString(COLUMN_USER_LASTNAME));
+                user.setPhone(results.getInt(COLUMN_USER_PHONE));
                 users.add(user);
             }
 
 
         for(Users user : users) {
             if(user.getPassword().equals(pass) && user.getUserid().equals(loginId)){
-                System.out.println("Password Right, BRO!");
+                System.out.println("Password Right! User: " + user.getUserid() + " is logged in!" );
+                Users.setCurrentUser(loginId);
                 return user.getRole();
             }
             else {
@@ -73,7 +80,7 @@ public class Datasource {
         }
 
     }
-    public String queryUser(String pass, String loginId) throws SQLException {
+    public Users queryUser(String loginId) throws SQLException {
         
         try(Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS)) {
@@ -84,18 +91,21 @@ public class Datasource {
                 user.setUserid(results.getString(COLUMN_USER_USERID));
                 user.setPassword(results.getString(COLUMN_USER_PASSWORD));
                 user.setRole(results.getString(COLUMN_USER_ROLE));
-                
+                user.setEmail(results.getString(COLUMN_USER_EMAIL));
+                user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));
+                user.setLastName(results.getString(COLUMN_USER_LASTNAME));
+                user.setPhone(results.getInt(COLUMN_USER_PHONE));
                 users.add(user);
             }
 
 
         for(Users user : users) {
-            if(user.getPassword().equals(pass) && user.getUserid().equals(loginId)){
-                System.out.println("Password Right, BRO!");
-                return user.getRole();
+            if(user.getUserid().equals(loginId)){
+                System.out.println(Users.getCurrentUser() + "is logged in!");
+                return user;
             }
             else {
-                 System.out.println("no match");
+                 System.out.println("no one is logged in? BRO!?");
             }
         }
             return null;

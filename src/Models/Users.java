@@ -75,6 +75,16 @@ public class Users {
         this.password = password;
     }
 
+    public String welcomeString(){
+        if(getRole().equals("Doctor")){
+            return "Welcome, " + "Dr." +  " " + getLastName();
+        }
+        if(getRole().equals("Admin")){
+            return "Welcome, " + "Admin" +  " " + getLastName();
+        }
+        return "Welcome Receptionist, " + getFirstName() +  " " + getLastName();
+    }
+    
     public static String getCurrentUser() {
         return currentUser;
     }
@@ -82,7 +92,7 @@ public class Users {
     public static void setCurrentUser(String currentUser) {
         Users.currentUser = currentUser;
     }
-    
+        
     public static int getUserCount(){
       return 0;
     }

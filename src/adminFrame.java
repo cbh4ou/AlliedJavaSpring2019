@@ -1,3 +1,4 @@
+import Models.Users;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Locale;
@@ -12,10 +13,12 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     String previousString = "";
     private int mouseX;
     private int mouseY;
+    private final Users currentUser;
+   
     
-    public adminFrame() {
-        Thread t = new Thread(this);
-        t.start();
+    public adminFrame(Users currentUser) {
+        this.currentUser = currentUser;
+        System.out.println(" Admin Frame User Instance, Username: " + currentUser.getUserid());
         initComponents();
         CardPanel.removeAll();
         CardPanel.add(homePanel);
@@ -26,10 +29,10 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private void initComponents() {
 
         exit = new javax.swing.JLabel();
-        jLabelDrag = new javax.swing.JLabel();
         clockDate = new javax.swing.JPanel();
         jLabelClock = new javax.swing.JLabel();
         jLabelDate = new javax.swing.JLabel();
+        jLabelDrag = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
         home = new javax.swing.JPanel();
         homeLabel = new javax.swing.JLabel();
@@ -120,6 +123,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         homePanel = new javax.swing.JPanel();
         homeTitle = new javax.swing.JLabel();
         tranPanel6 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,20 +143,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         getContentPane().add(exit);
         exit.setBounds(1430, 0, 20, 30);
 
-        jLabelDrag.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelDrag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabelDragMouseDragged(evt);
-            }
-        });
-        jLabelDrag.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelDragMousePressed(evt);
-            }
-        });
-        getContentPane().add(jLabelDrag);
-        jLabelDrag.setBounds(0, 0, 1450, 30);
-
         clockDate.setOpaque(false);
         clockDate.setLayout(null);
 
@@ -167,6 +157,20 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         jLabelDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         clockDate.add(jLabelDate);
         jLabelDate.setBounds(5, 5, 270, 20);
+
+        jLabelDrag.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelDrag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabelDragMouseDragged(evt);
+            }
+        });
+        jLabelDrag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelDragMousePressed(evt);
+            }
+        });
+        clockDate.add(jLabelDrag);
+        jLabelDrag.setBounds(-350, 0, 1450, 30);
 
         getContentPane().add(clockDate);
         clockDate.setBounds(350, 0, 1080, 30);
@@ -417,25 +421,25 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         password.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(password);
-        password.setBounds(190, 500, 170, 30);
+        password.setBounds(190, 460, 170, 30);
 
         passTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         passTitle.setForeground(new java.awt.Color(255, 255, 255));
         passTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         passTitle.setText("Password:");
         tranPanel1.add(passTitle);
-        passTitle.setBounds(10, 510, 170, 21);
+        passTitle.setBounds(10, 460, 170, 21);
 
         reenterPassTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         reenterPassTitle.setForeground(new java.awt.Color(255, 255, 255));
         reenterPassTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        reenterPassTitle.setText("Re-Enter Password:");
+        reenterPassTitle.setText("Confirm Password:");
         tranPanel1.add(reenterPassTitle);
-        reenterPassTitle.setBounds(450, 510, 190, 21);
+        reenterPassTitle.setBounds(0, 510, 180, 20);
 
         reenterPassword.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(reenterPassword);
-        reenterPassword.setBounds(650, 500, 170, 30);
+        reenterPassword.setBounds(190, 500, 170, 30);
 
         roleTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         roleTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -454,22 +458,22 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         fieldTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         fieldTitle.setText("Medical Field:");
         tranPanel1.add(fieldTitle);
-        fieldTitle.setBounds(230, 410, 170, 21);
+        fieldTitle.setBounds(10, 390, 170, 21);
 
         field.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(field);
-        field.setBounds(410, 400, 170, 30);
+        field.setBounds(190, 380, 170, 30);
 
         scheduleTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         scheduleTitle.setForeground(new java.awt.Color(255, 255, 255));
         scheduleTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         scheduleTitle.setText("Work Schedule:");
         tranPanel1.add(scheduleTitle);
-        scheduleTitle.setBounds(140, 600, 170, 21);
+        scheduleTitle.setBounds(410, 500, 170, 21);
 
         workSchedule.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(workSchedule);
-        workSchedule.setBounds(320, 590, 450, 30);
+        workSchedule.setBounds(590, 500, 450, 30);
 
         empRegPanel.add(tranPanel1);
         tranPanel1.setBounds(10, 90, 1080, 683);
@@ -644,6 +648,8 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         profileID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileID.setForeground(new java.awt.Color(255, 255, 255));
+        profileID.setEnabled(false);
+        profileID.setText(currentUser.getUserid());
         tranPanel3.add(profileID);
         profileID.setBounds(140, 100, 260, 20);
 
@@ -805,6 +811,13 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         homeTitle.setBounds(360, 15, 380, 70);
 
         tranPanel6.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText(currentUser.welcomeString());
+        tranPanel6.add(jLabel2);
+        jLabel2.setBounds(20, 40, 1010, 60);
+
         homePanel.add(tranPanel6);
         tranPanel6.setBounds(10, 90, 1080, 683);
         tranPanel6.setBackground(new Color(0,0,0,80));
@@ -957,6 +970,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel homeTitle;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelClock;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelDrag;
