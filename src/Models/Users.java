@@ -85,6 +85,12 @@ public class Users {
         return "Welcome Receptionist, " + getFirstName() +  " " + getLastName();
     }
     
+   
+    public String fullNameString(){
+        
+        return getFirstName() +  " " + getLastName();
+    }
+    
     public static String getCurrentUser() {
         return currentUser;
     }

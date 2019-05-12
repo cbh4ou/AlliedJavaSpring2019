@@ -588,6 +588,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         profilePhone.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profilePhone.setForeground(new java.awt.Color(255, 255, 255));
+        profilePhone.setText(String.valueOf(currentUser.getPhone()));
         tranPanel3.add(profilePhone);
         profilePhone.setBounds(140, 340, 310, 20);
 
@@ -600,6 +601,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         profileEmail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileEmail.setForeground(new java.awt.Color(255, 255, 255));
+        profileEmail.setText(currentUser.getEmail());
         tranPanel3.add(profileEmail);
         profileEmail.setBounds(560, 340, 310, 20);
 
@@ -616,6 +618,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         profileRole.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileRole.setForeground(new java.awt.Color(255, 255, 255));
+        profileRole.setText(currentUser.getRole());
         tranPanel3.add(profileRole);
         profileRole.setBounds(560, 210, 310, 20);
 
@@ -632,6 +635,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         profileName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileName.setForeground(new java.awt.Color(255, 255, 255));
+        profileName.setText(currentUser.fullNameString());
         tranPanel3.add(profileName);
         profileName.setBounds(140, 207, 310, 23);
 
@@ -648,8 +652,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
 
         profileID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileID.setForeground(new java.awt.Color(255, 255, 255));
-        profileID.setEnabled(false);
-        profileID.setText(currentUser.getUserid());
+        profileID.setText("EMP" + currentUser.getId());
         tranPanel3.add(profileID);
         profileID.setBounds(140, 100, 260, 20);
 

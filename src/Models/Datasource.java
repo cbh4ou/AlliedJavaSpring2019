@@ -51,6 +51,7 @@ public class Datasource {
             List<Users> users = new ArrayList<>();
             while(results.next()) {
               Users user = new Users();
+                user.setId(results.getInt(COLUMN_USER_ID));
                 user.setUserid(results.getString(COLUMN_USER_USERID));
                 user.setPassword(results.getString(COLUMN_USER_PASSWORD));
                 user.setRole(results.getString(COLUMN_USER_ROLE));
@@ -88,6 +89,7 @@ public class Datasource {
             List<Users> users = new ArrayList<>();
             while(results.next()) {
               Users user = new Users();
+                user.setId(results.getInt(COLUMN_USER_ID));
                 user.setUserid(results.getString(COLUMN_USER_USERID));
                 user.setPassword(results.getString(COLUMN_USER_PASSWORD));
                 user.setRole(results.getString(COLUMN_USER_ROLE));
