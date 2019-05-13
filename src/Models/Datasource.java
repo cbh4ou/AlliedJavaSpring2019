@@ -120,7 +120,8 @@ public class Datasource {
 
     }
      public void insertUser(String pass, String loginId) throws SQLException {
-        String sql = "INSERT INTO testadmin(name, pass) VALUES(?,?);";
+        String sql = "INSERT INTO users(userid, email, password, role, phone, firstName"
+                + ",lastName, schedule) VALUES(?,?,?,?,?,?,?,?);";
 
         try {
             System.out.println("");
@@ -133,4 +134,18 @@ public class Datasource {
         }
 
     }
+     public void userCount() throws SQLException {
+        
+        try(Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery("select count(*) as final from " + TABLE_USERS)) {
+
+            
+            while(results.next()) {
+                System.err.println(results.getInt("final"));
+            }
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+       
+        }
 }
