@@ -8,15 +8,15 @@ public class Users {
     private String email;
     private String password;
     private String role;
-    private int phone;
+    private String phone;
     private String firstName;
     private String lastName;
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

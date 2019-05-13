@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class adminFrame extends javax.swing.JFrame implements Runnable{
     static DefaultListModel noteNameList = new DefaultListModel();
@@ -18,7 +19,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private int mouseX;
     private int mouseY;
     private final Users currentUser;
-   
+    private DefaultTableModel emp;
     
     public adminFrame(Users currentUser) {
         this.currentUser = currentUser;
@@ -26,6 +27,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
         CardPanel.removeAll();
         CardPanel.add(homePanel);
+        emp = (DefaultTableModel) jTable1.getModel();
     }
 
     @SuppressWarnings("unchecked")
@@ -69,16 +71,16 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         phoneNumber = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         emailTitle = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
-        passTitle = new javax.swing.JLabel();
+        userID = new javax.swing.JTextField();
+        usernameTitle = new javax.swing.JLabel();
         reenterPassTitle = new javax.swing.JLabel();
         reenterPassword = new javax.swing.JTextField();
         roleTitle = new javax.swing.JLabel();
         employeeRole = new javax.swing.JComboBox<>();
-        fieldTitle = new javax.swing.JLabel();
-        field = new javax.swing.JTextField();
         scheduleTitle = new javax.swing.JLabel();
         workSchedule = new javax.swing.JTextField();
+        password1 = new javax.swing.JTextField();
+        passTitle1 = new javax.swing.JLabel();
         empSearchPanel = new javax.swing.JPanel();
         empSearchTitle = new javax.swing.JLabel();
         tranPanel2 = new javax.swing.JPanel();
@@ -252,7 +254,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu.add(logout);
-        logout.setBounds(210, 761, 110, 40);
+        logout.setBounds(210, 761, 116, 40);
 
         tasksButton.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         tasksButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -335,7 +337,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         empSearch.setBounds(28, 270, 260, 40);
 
         getContentPane().add(menu);
-        menu.setBounds(0, 0, 350, 820);
+        menu.setBounds(10, 0, 350, 820);
 
         CardPanel.setOpaque(false);
         CardPanel.setLayout(new java.awt.CardLayout());
@@ -360,6 +362,8 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         empIDTitle.setBounds(40, 90, 140, 21);
 
         employeeID.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        employeeID.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        employeeID.setEnabled(false);
         tranPanel1.add(employeeID);
         employeeID.setBounds(650, 80, 130, 30);
 
@@ -411,7 +415,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         phoneTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         phoneTitle.setText("Phone Number:");
         tranPanel1.add(phoneTitle);
-        phoneTitle.setBounds(470, 300, 170, 21);
+        phoneTitle.setBounds(470, 290, 170, 21);
 
         phoneNumber.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(phoneNumber);
@@ -428,27 +432,27 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         tranPanel1.add(emailTitle);
         emailTitle.setBounds(10, 300, 170, 21);
 
-        password.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(password);
-        password.setBounds(190, 460, 170, 30);
+        userID.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(userID);
+        userID.setBounds(650, 360, 170, 30);
 
-        passTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        passTitle.setForeground(new java.awt.Color(255, 255, 255));
-        passTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        passTitle.setText("Password:");
-        tranPanel1.add(passTitle);
-        passTitle.setBounds(10, 460, 170, 21);
+        usernameTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        usernameTitle.setForeground(new java.awt.Color(255, 255, 255));
+        usernameTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        usernameTitle.setText("Login ID:");
+        tranPanel1.add(usernameTitle);
+        usernameTitle.setBounds(470, 360, 170, 21);
 
         reenterPassTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         reenterPassTitle.setForeground(new java.awt.Color(255, 255, 255));
         reenterPassTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         reenterPassTitle.setText("Confirm Password:");
         tranPanel1.add(reenterPassTitle);
-        reenterPassTitle.setBounds(0, 510, 180, 20);
+        reenterPassTitle.setBounds(460, 500, 180, 20);
 
         reenterPassword.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(reenterPassword);
-        reenterPassword.setBounds(190, 500, 170, 30);
+        reenterPassword.setBounds(650, 500, 170, 30);
 
         roleTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         roleTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -460,29 +464,29 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         employeeRole.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         employeeRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Role", "Receptionist", "Doctor", "Admin" }));
         tranPanel1.add(employeeRole);
-        employeeRole.setBounds(190, 82, 170, 31);
-
-        fieldTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        fieldTitle.setForeground(new java.awt.Color(255, 255, 255));
-        fieldTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        fieldTitle.setText("Medical Field:");
-        tranPanel1.add(fieldTitle);
-        fieldTitle.setBounds(10, 390, 170, 21);
-
-        field.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel1.add(field);
-        field.setBounds(190, 380, 170, 30);
+        employeeRole.setBounds(190, 82, 170, 30);
 
         scheduleTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         scheduleTitle.setForeground(new java.awt.Color(255, 255, 255));
         scheduleTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         scheduleTitle.setText("Work Schedule:");
         tranPanel1.add(scheduleTitle);
-        scheduleTitle.setBounds(410, 500, 170, 21);
+        scheduleTitle.setBounds(480, 570, 170, 21);
 
         workSchedule.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         tranPanel1.add(workSchedule);
-        workSchedule.setBounds(590, 500, 450, 30);
+        workSchedule.setBounds(650, 570, 420, 30);
+
+        password1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        tranPanel1.add(password1);
+        password1.setBounds(650, 420, 170, 30);
+
+        passTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        passTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        passTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        passTitle1.setText("Password:");
+        tranPanel1.add(passTitle1);
+        passTitle1.setBounds(470, 420, 170, 21);
 
         empRegPanel.add(tranPanel1);
         tranPanel1.setBounds(10, 90, 1080, 683);
@@ -896,6 +900,17 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void empRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empRegisterMouseClicked
+        Datasource count = new Datasource();
+         if(!count.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+        try {
+            employeeID.setText(String.valueOf(count.maxID() + 1));
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        count.close();
         CardPanel.removeAll();
         CardPanel.add(empRegPanel);
         CardPanel.repaint();
@@ -950,30 +965,45 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_deleteButtonMouseClicked
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-//       String role;
-//       role = (String) employeeRole.getSelectedItem();
-//       String fname = firstName.getText();
-//       String lname = lastName.getText();
-//       String empEmail = email.getText();
-//       String phone = phoneNumber.getText();
-//       String meidcalDegree = field.getText();
-//       String schedule = workSchedule.getText();
-       String pass = password.getText();
-      String confirmPass = reenterPassword.getText();
+       String role;
+       role = (String) employeeRole.getSelectedItem();
+       String fname = firstName.getText();
+       String lname = lastName.getText();
+      String empEmail = email.getText();
+      
+        String phone = phoneNumber.getText();
+        
+       String schedule = workSchedule.getText();
+       String loginID = userID.getText();
+       String pass = password1.getText();
+       String pass2 = reenterPassword.getText();
+  
       Datasource employee = new Datasource();
-       if(pass.equals(confirmPass)){
+       if(pass.equals(pass2) && userID != null ){
            if(!employee.open()) {
                     System.out.println("Can't open datasource");
                     return;
                 }
           
            try {
-               employee.insertUser(pass,"poop");
+               employee.insertUser(loginID, empEmail, pass,role, phone, fname, lname, schedule);
            } catch (SQLException ex) {
                System.out.println("Couldn't connect to database: " + ex.getMessage());
            }
        }
        employee.close();
+       
+      
+        employeeRole.setSelectedIndex(0);
+       firstName.setText("");
+        lastName.setText("");
+       email.setText("");
+        phoneNumber.setText("");
+        workSchedule.setText("");
+        userID.setText("");
+        password1.setText("");
+       reenterPassword.setText("");
+         reenterPassword.setText("");
     }//GEN-LAST:event_saveButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -999,8 +1029,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JComboBox<String> employeeRole;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel fNameTitle;
-    private javax.swing.JTextField field;
-    private javax.swing.JLabel fieldTitle;
     private javax.swing.JTextField firstName;
     private javax.swing.JPanel home;
     private javax.swing.JLabel homeIcon;
@@ -1033,8 +1061,8 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel pRegLabel;
     private javax.swing.JLabel pSearchIcon;
     private javax.swing.JLabel pSearchLabel;
-    private javax.swing.JLabel passTitle;
-    private javax.swing.JTextField password;
+    private javax.swing.JLabel passTitle1;
+    private javax.swing.JTextField password1;
     private javax.swing.JTextField phoneNumber;
     private javax.swing.JLabel phoneTitle;
     private javax.swing.JLabel profileButton;
@@ -1071,6 +1099,8 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JPanel tranPanel4;
     private javax.swing.JPanel tranPanel5;
     private javax.swing.JPanel tranPanel6;
+    private javax.swing.JTextField userID;
+    private javax.swing.JLabel usernameTitle;
     private javax.swing.JPanel workSchPanel;
     private javax.swing.JLabel workSchTitle;
     private javax.swing.JTextField workSchedule;

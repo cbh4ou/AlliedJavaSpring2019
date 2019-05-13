@@ -17,8 +17,8 @@ public class Main {
             return;
         }
 
-       datasource.userCount();
-
+       
+        System.out.println(datasource.loginUsers("admin", "admin"));
         datasource.close();
     }
 }

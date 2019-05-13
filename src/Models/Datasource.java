@@ -59,7 +59,7 @@ public class Datasource {
                 user.setEmail(results.getString(COLUMN_USER_EMAIL));
                 user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));
                 user.setLastName(results.getString(COLUMN_USER_LASTNAME));
-                user.setPhone(results.getInt(COLUMN_USER_PHONE));
+                user.setPhone(results.getString(COLUMN_USER_PHONE));
                 users.add(user);
             }
 
@@ -97,7 +97,7 @@ public class Datasource {
                 user.setEmail(results.getString(COLUMN_USER_EMAIL));
                 user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));
                 user.setLastName(results.getString(COLUMN_USER_LASTNAME));
-                user.setPhone(results.getInt(COLUMN_USER_PHONE));
+                user.setPhone(results.getString(COLUMN_USER_PHONE));
                 users.add(user);
             }
 
@@ -106,9 +106,6 @@ public class Datasource {
             if(user.getUserid().equals(loginId)){
                 System.out.println(Users.getCurrentUser() + "is logged in!");
                 return user;
-            }
-            else {
-                 System.out.println("no one is logged in? BRO!?");
             }
         }
             return null;
@@ -119,7 +116,8 @@ public class Datasource {
         }
 
     }
-     public void insertUser(String pass, String loginId) throws SQLException {
+     public void insertUser(String loginId, String email, String pass, String role, String phone,
+     String firstName, String lastName, String schedule) throws SQLException {
         String sql = "INSERT INTO users(userid, email, password, role, phone, firstName"
                 + ",lastName, schedule) VALUES(?,?,?,?,?,?,?,?);";
 
@@ -127,25 +125,48 @@ public class Datasource {
             System.out.println("");
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, loginId);
-            pstmt.setString(2, pass);
+            pstmt.setString(2, email);
+            pstmt.setString(3, pass);
+            pstmt.setString(4, role);
+            pstmt.setString(5, phone);
+            pstmt.setString(6, firstName);
+            pstmt.setString(7, lastName);
+            pstmt.setString(8, schedule);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
     }
-     public void userCount() throws SQLException {
+     public int userCount() throws SQLException {
         
         try(Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("select count(*) as final from " + TABLE_USERS)) {
 
             
             while(results.next()) {
-                System.err.println(results.getInt("final"));
+                return results.getInt("final");
             }
             } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return 0;
+       
+        }
+     
+     public int maxID() throws SQLException {
+        
+        try(Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery("select max(_id) as max from " + TABLE_USERS)) {
+
+            
+            while(results.next()) {
+                return results.getInt("max");
+            }
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
        
         }
 }
