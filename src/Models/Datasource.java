@@ -21,6 +21,7 @@ public class Datasource {
     public static final String COLUMN_USER_PHONE = "phone";
     public static final String COLUMN_USER_LASTNAME = "lastName";
     public static final String COLUMN_USER_FIRSTNAME = "firstName";
+    
     private Connection conn;
 
     public boolean open() {

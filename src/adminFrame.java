@@ -212,7 +212,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu.add(home);
-        home.setBounds(30, 760, 110, 40);
+        home.setBounds(30, 760, 111, 40);
 
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.setOpaque(false);
@@ -248,7 +248,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu.add(logout);
-        logout.setBounds(210, 761, 116, 40);
+        logout.setBounds(210, 761, 117, 40);
 
         tasksButton.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         tasksButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -451,7 +451,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         employeeRole.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         employeeRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Role", "Receptionist", "Doctor", "Admin" }));
         tranPanel1.add(employeeRole);
-        employeeRole.setBounds(190, 82, 170, 30);
+        employeeRole.setBounds(190, 82, 170, 27);
 
         fieldTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         fieldTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -768,7 +768,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         jList.setBackground(new java.awt.Color(246, 243, 243));
         jList.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jList.setForeground(new java.awt.Color(0, 0, 0));
         jList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jList.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -787,7 +786,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         jTextArea.setBackground(new java.awt.Color(246, 243, 243));
         jTextArea.setColumns(20);
         jTextArea.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextArea.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea.setRows(5);
         jTextArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));

@@ -380,7 +380,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu1.add(logout);
-        logout.setBounds(210, 761, 116, 40);
+        logout.setBounds(210, 761, 110, 40);
 
         getContentPane().add(menu1);
         menu1.setBounds(0, 0, 350, 820);
@@ -525,7 +525,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         maritalStatus.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         maritalStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Status", "Single", "Married" }));
         tranPanel1.add(maritalStatus);
-        maritalStatus.setBounds(590, 170, 150, 30);
+        maritalStatus.setBounds(590, 170, 150, 31);
 
         mStatusTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         mStatusTitle1.setForeground(new java.awt.Color(255, 255, 255));
@@ -537,7 +537,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         maritalStatus1.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         maritalStatus1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         tranPanel1.add(maritalStatus1);
-        maritalStatus1.setBounds(590, 120, 150, 30);
+        maritalStatus1.setBounds(590, 120, 150, 31);
 
         SSNTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         SSNTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -600,7 +600,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         race.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         race.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Race", "Caucasian", "African American", "Asian", "Native Hawaiian/Pacific Islander", "American Indian/Alaskan Native", "Hispanic", "Other" }));
         tranPanel1.add(race);
-        race.setBounds(170, 170, 200, 30);
+        race.setBounds(170, 170, 200, 31);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Emergency Contact", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setOpaque(false);
@@ -817,6 +817,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         ProfileID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ProfileID.setForeground(new java.awt.Color(255, 255, 255));
+        ProfileID.setText("EMP" + currentUser.getId());
         tranPanel4.add(ProfileID);
         ProfileID.setBounds(140, 100, 260, 20);
 
@@ -833,6 +834,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         profileName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileName.setForeground(new java.awt.Color(255, 255, 255));
+        profileName.setText(currentUser.fullNameString());
         tranPanel4.add(profileName);
         profileName.setBounds(140, 207, 310, 23);
 
@@ -849,6 +851,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         profileRole.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileRole.setForeground(new java.awt.Color(255, 255, 255));
+        profileRole.setText(currentUser.getRole());
         tranPanel4.add(profileRole);
         profileRole.setBounds(560, 210, 310, 20);
 
@@ -862,6 +865,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         profilePhone.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profilePhone.setForeground(new java.awt.Color(255, 255, 255));
+        profilePhone.setText(String.valueOf(currentUser.getPhone()));
         tranPanel4.add(profilePhone);
         profilePhone.setBounds(140, 340, 310, 20);
 
@@ -878,6 +882,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         profileEmail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         profileEmail.setForeground(new java.awt.Color(255, 255, 255));
+        profileEmail.setText(currentUser.getEmail());
         tranPanel4.add(profileEmail);
         profileEmail.setBounds(560, 340, 310, 20);
 
@@ -958,7 +963,6 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         jList.setBackground(new java.awt.Color(246, 243, 243));
         jList.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jList.setForeground(new java.awt.Color(0, 0, 0));
         jList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jList.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -977,7 +981,6 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         jTextArea.setBackground(new java.awt.Color(246, 243, 243));
         jTextArea.setColumns(20);
         jTextArea.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextArea.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea.setRows(5);
         jTextArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
