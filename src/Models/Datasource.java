@@ -119,16 +119,15 @@ public class Datasource {
         }
 
     }
-     public String insertUser(String pass, String loginId, String firstName,
-             String role) throws SQLException {
-        String sql = "INSERT INTO warehouses(name,capacity) VALUES(?,?)";
+     public void insertUser(String pass, String loginId) throws SQLException {
+        String sql = "INSERT INTO testadmin(name, pass) VALUES(?,?);";
 
         try {
+            System.out.println("");
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, firstName);
-            pstmt.setDouble(2, capacity);
+            pstmt.setString(1, loginId);
+            pstmt.setString(2, pass);
             pstmt.executeUpdate();
-            table
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
