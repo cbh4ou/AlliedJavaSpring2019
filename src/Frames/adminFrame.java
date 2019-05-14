@@ -1,7 +1,10 @@
+package Frames;
+
 import Models.Datasource;
 import Models.Users;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -19,7 +22,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private int mouseX;
     private int mouseY;
     private final Users currentUser;
-    private DefaultTableModel emp;
+    public static DefaultTableModel emp;
     
     public adminFrame(Users currentUser) {
         this.currentUser = currentUser;
@@ -27,7 +30,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
         CardPanel.removeAll();
         CardPanel.add(homePanel);
-        emp = (DefaultTableModel) jTable1.getModel();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -90,10 +93,10 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         searchLastName = new javax.swing.JTextField();
         searchEmpID = new javax.swing.JTextField();
         empIDTitle1 = new javax.swing.JLabel();
-        editButton = new javax.swing.JButton();
+        saveEmp = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        empSearchTable = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        empTable = new javax.swing.JTable();
         profilePanel = new javax.swing.JPanel();
         profileTitle = new javax.swing.JLabel();
         tranPanel3 = new javax.swing.JPanel();
@@ -539,42 +542,43 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
         tranPanel2.add(empIDTitle1);
         empIDTitle1.setBounds(70, 70, 140, 21);
 
-        editButton.setBackground(new java.awt.Color(71, 177, 175));
-        editButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        editButton.setForeground(new java.awt.Color(255, 255, 255));
-        editButton.setText("Edit");
-        editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tranPanel2.add(editButton);
-        editButton.setBounds(880, 120, 140, 50);
+        saveEmp.setBackground(new java.awt.Color(71, 177, 175));
+        saveEmp.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        saveEmp.setForeground(new java.awt.Color(255, 255, 255));
+        saveEmp.setText("Save");
+        saveEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tranPanel2.add(saveEmp);
+        saveEmp.setBounds(880, 120, 140, 50);
 
         searchButton.setBackground(new java.awt.Color(71, 177, 175));
         searchButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
         searchButton.setText("Search");
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
         tranPanel2.add(searchButton);
         searchButton.setBounds(880, 50, 140, 50);
 
-        empSearchTable.setModel(new javax.swing.table.DefaultTableModel(
+        empTable.setAutoCreateRowSorter(true);
+        empTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "First Name", "Last Name", "Phone Number", "Email"
+                "Title 1", "Title 2", "Title 3", "Title 4", "hi", "hi"
             }
         ));
-        jScrollPane1.setViewportView(empSearchTable);
-        if (empSearchTable.getColumnModel().getColumnCount() > 0) {
-            empSearchTable.getColumnModel().getColumn(0).setResizable(false);
-            empSearchTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-            empSearchTable.getColumnModel().getColumn(1).setResizable(false);
-            empSearchTable.getColumnModel().getColumn(2).setResizable(false);
-            empSearchTable.getColumnModel().getColumn(3).setResizable(false);
-            empSearchTable.getColumnModel().getColumn(4).setResizable(false);
-        }
+        jScrollPane5.setViewportView(empTable);
 
-        tranPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 210, 1060, 460);
+        tranPanel2.add(jScrollPane5);
+        jScrollPane5.setBounds(3, 250, 1080, 430);
 
         empSearchPanel.add(tranPanel2);
         tranPanel2.setBounds(10, 90, 1080, 683);
@@ -918,6 +922,9 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_empRegisterMouseClicked
 
     private void empSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empSearchMouseClicked
+       
+        
+        
         CardPanel.removeAll();
         CardPanel.add(empSearchPanel);
         CardPanel.repaint();
@@ -1006,6 +1013,35 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
          reenterPassword.setText("");
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        Datasource employee = new Datasource();
+         DefaultTableModel emp = (DefaultTableModel) empTable.getModel();
+      if(!employee.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+           try {
+            ArrayList<Users> list = employee.queryETable();
+            String[] row = new String[6];
+            for (Users index : list) {
+              row[0] = Integer.toString(index.getId());
+              row[1] = index.getRole();
+              row[2] = index.getEmail();
+              row[3] = index.getFirstName();
+              row[4] = index.getLastName();
+              row[5] = index.getPhone();
+              emp.addRow(row);
+        }
+               System.out.println();
+            empTable.setModel(emp);
+            emp.fireTableDataChanged();
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+       
+       employee.close();
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardPanel;
     private javax.swing.JButton addButton;
@@ -1013,7 +1049,6 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JButton clearButton;
     private javax.swing.JPanel clockDate;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JButton editButton;
     private javax.swing.JTextField email;
     private javax.swing.JLabel emailTitle;
     private javax.swing.JLabel empIDTitle;
@@ -1023,8 +1058,8 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JPanel empRegister;
     private javax.swing.JPanel empSearch;
     private javax.swing.JPanel empSearchPanel;
-    private javax.swing.JTable empSearchTable;
     private javax.swing.JLabel empSearchTitle;
+    private javax.swing.JTable empTable;
     private javax.swing.JTextField employeeID;
     private javax.swing.JComboBox<String> employeeRole;
     private javax.swing.JLabel exit;
@@ -1040,10 +1075,10 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelDrag;
     private javax.swing.JList<String> jList;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1082,6 +1117,7 @@ public class adminFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField reenterPassword;
     private javax.swing.JLabel roleTitle;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton saveEmp;
     private javax.swing.JLabel scheduleButton1;
     private javax.swing.JLabel scheduleTitle;
     private javax.swing.JButton searchButton;

@@ -1,6 +1,7 @@
 package SQLDriver;
 
 
+import static Frames.adminFrame.emp;
 import Models.Datasource;
 import Models.Users;
 import java.sql.SQLException;
@@ -18,8 +19,13 @@ public class Main {
         }
 
        
-        System.out.println(datasource.loginUsers("admin", "admin"));
+      ArrayList<Users> list = datasource.queryETable();
+            Object[] row = new Object[5];
+
+                System.out.println(list);
+            
         datasource.close();
+            
     }
 }
 

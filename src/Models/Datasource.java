@@ -1,9 +1,11 @@
 package Models;
 
 
+
+import Frames.adminFrame;
 import java.sql.*;
 import java.util.*;
-
+import javax.swing.table.DefaultTableModel;
 
 
 public class Datasource {
@@ -169,4 +171,34 @@ public class Datasource {
         return 0;
        
         }
+     
+   
+     public ArrayList<Users> queryETable() throws SQLException {
+         
+         
+         String sql = " SELECT _id, firstName , lastName, phone, email, role  from  users";
+       try{ Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS);
+
+            ArrayList<Users> users = new ArrayList<>();
+            while(results.next()) {
+              Users user = new Users();
+                user.setId(results.getInt(COLUMN_USER_ID));
+                user.setRole(results.getString(COLUMN_USER_ROLE));
+                user.setEmail(results.getString(COLUMN_USER_EMAIL));
+                user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));
+                user.setLastName(results.getString(COLUMN_USER_LASTNAME));
+                user.setPhone(results.getString(COLUMN_USER_PHONE));
+                users.add(user);
+            }
+            return users;
+       } catch(SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());         
+        } catch (NullPointerException e){
+            System.out.println("Query failed: " + e.getMessage());
+        }
+       return null;
+     }  
+     
+       
 }
