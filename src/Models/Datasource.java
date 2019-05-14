@@ -23,7 +23,7 @@ public class Datasource {
     public static final String COLUMN_USER_PHONE = "phone";
     public static final String COLUMN_USER_LASTNAME = "lastName";
     public static final String COLUMN_USER_FIRSTNAME = "firstName";
-    
+    public static final String COLUMN_USER_SCHEDULE = "schedule";
     private Connection conn;
 
     public boolean open() {
@@ -184,11 +184,11 @@ public class Datasource {
             while(results.next()) {
               Users user = new Users();
                 user.setId(results.getInt(COLUMN_USER_ID));
-                user.setRole(results.getString(COLUMN_USER_ROLE));
-                user.setEmail(results.getString(COLUMN_USER_EMAIL));
                 user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));
                 user.setLastName(results.getString(COLUMN_USER_LASTNAME));
-                user.setPhone(results.getString(COLUMN_USER_PHONE));
+                user.setPhone(results.getString(COLUMN_USER_PHONE));                
+                user.setEmail(results.getString(COLUMN_USER_EMAIL));
+                user.setRole(results.getString(COLUMN_USER_ROLE));     
                 users.add(user);
             }
             return users;
@@ -200,5 +200,28 @@ public class Datasource {
        return null;
      }  
      
-       
+       public ArrayList<Users> querySTable() throws SQLException {      
+        
+             String sql = " SELECT _id, role , firstName, lastName, schedule";
+           try{ Statement statement = conn.createStatement();
+                ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS);
+    
+                ArrayList<Users> users = new ArrayList<>();
+                while(results.next()) {
+                  Users user = new Users();
+                    user.setId(results.getInt(COLUMN_USER_ID));
+                    user.setRole(results.getString(COLUMN_USER_ROLE));
+                    user.setLastName(results.getString(COLUMN_USER_LASTNAME));
+                    user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));                    
+                    user.setPhone(results.getString(COLUMN_USER_SCHEDULE));
+                    users.add(user);
+                }
+                return users;
+           } catch(SQLException e) {
+                System.out.println("Query failed: " + e.getMessage());         
+            } catch (NullPointerException e){
+                System.out.println("Query failed: " + e.getMessage());
+            }
+           return null;
+         }
 }

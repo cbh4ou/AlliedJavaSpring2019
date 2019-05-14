@@ -62,7 +62,7 @@ public class loginFrame extends javax.swing.JFrame {
         usernameField.setBackground(new java.awt.Color(51, 51, 51));
         usernameField.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         usernameField.setForeground(new java.awt.Color(255, 255, 255));
-        usernameField.setText(" Username");
+        usernameField.setText("Username");
         usernameField.setToolTipText("");
         usernameField.setCaretColor(new java.awt.Color(255, 255, 255));
         usernameField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
