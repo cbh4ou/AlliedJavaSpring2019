@@ -14,7 +14,16 @@ public class Patients {
 	    private String city;
 	    private String state;
 	    private String social;
-	    
+	    private String doctor;
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+            
 	    public String getPPhone() {
 	        return phone;
 	    }

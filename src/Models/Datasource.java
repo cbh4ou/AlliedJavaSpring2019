@@ -6,7 +6,7 @@ import Frames.adminFrame;
 import java.sql.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
-
+import net.proteanit.sql.DbUtils;
 
 public class Datasource {
 
@@ -259,11 +259,11 @@ public class Datasource {
             }
            return null;
          }
-       public ArrayList<Patients> queryPTable() throws SQLException {      
+       public ArrayList<Patients> queryPTable(int doctorID) throws SQLException {      
 		
-        String sql = " SELECT __pid, pfirstName, plastName, pphone, pemail";
+        String sql = " SELECT _pid, pfirstName, plastName, pphone, pemail, papt FROM patients WHERE pdoctor = " + Integer.toString(doctorID);
       try{ Statement statement = conn.createStatement();
-           ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_PATIENTS);
+           ResultSet results = statement.executeQuery(sql);
 
            ArrayList<Patients> patients = new ArrayList<>();
            while(results.next()) {
@@ -273,13 +273,33 @@ public class Datasource {
                patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));               
                patient.setPPhone(results.getString(COLUMN_PATIENT_PHONE));        
                patient.setPEmail(results.getString(COLUMN_PATIENT_EMAIL));
+               patient.setPApt(results.getString(COLUMN_PATIENT_APPOINTMENT));
                patients.add(patient);
            }
            return patients;
-      } catch(SQLException e) {
+      } catch(SQLException | NullPointerException e) {
            System.out.println("Query failed: " + e.getMessage());         
-       } catch (NullPointerException e){
-           System.out.println("Query failed: " + e.getMessage());
+       }
+      return null;
+    }  
+        public ArrayList<Patients> queryPRTable() throws SQLException {      
+		
+        String sql = " SELECT _pid, pfirstName, plastName, papt FROM patients";
+      try{ Statement statement = conn.createStatement();
+           ResultSet results = statement.executeQuery(sql);
+
+           ArrayList<Patients> patients = new ArrayList<>();
+           while(results.next()) {
+             Patients patient = new Patients();
+               patient.setPId(results.getInt(COLUMN_PATIENT_ID));
+               patient.setPFirstName(results.getString(COLUMN_PATIENT_FIRSTNAME));	 
+               patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));               
+               patient.setPApt(results.getString(COLUMN_PATIENT_APPOINTMENT));
+               patients.add(patient);
+           }
+           return patients;
+      } catch(SQLException | NullPointerException e) {
+           System.out.println("Query failed: " + e.getMessage());         
        }
       return null;
     }  

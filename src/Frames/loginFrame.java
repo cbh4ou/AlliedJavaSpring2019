@@ -180,7 +180,7 @@ public class loginFrame extends javax.swing.JFrame {
                 doctorFrame doctor = new doctorFrame(user.queryUser(usernameField.getText()));
                 doctor.setVisible(true);
             }
-           else if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
+           else if("Receptionist".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
                 receptionistFrame receptionist = new receptionistFrame(user.queryUser(usernameField.getText()));
                 receptionist.setVisible(true);

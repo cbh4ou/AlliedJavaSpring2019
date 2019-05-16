@@ -18,6 +18,7 @@ import javax.swing.table.TableColumn;
 public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     static DefaultListModel noteNameList = new DefaultListModel();
     static DefaultListModel patNoteNameList = new DefaultListModel();
+    static DefaultTableModel scheduleModel = new DefaultTableModel();
     String[] note = new String[500];
     String[] patNote = new String[500];
     int listIndex = 0;
@@ -26,6 +27,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     int patListIndex = 0;
     int patPreviousIndex = 0;
     String patPreviousString = "";
+    JComboBox combo;
     int mouseX;
     int mouseY;
     private final Users currentUser;
@@ -34,7 +36,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
         CardPanel.removeAll();
         CardPanel.add(homePanel);
-        setDoctor();
+       
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,17 +55,15 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         pRegLabel = new javax.swing.JLabel();
         pRegIcon = new javax.swing.JLabel();
         patSearch = new javax.swing.JPanel();
-        pSearchIcon = new javax.swing.JLabel();
-        pSearchLabel = new javax.swing.JLabel();
+        appointmentMenu = new javax.swing.JPanel();
+        pSearchLabel1 = new javax.swing.JLabel();
+        pSearchIcon1 = new javax.swing.JLabel();
         home = new javax.swing.JPanel();
         homeLabel = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
         logout2 = new javax.swing.JPanel();
         logoutLabel2 = new javax.swing.JLabel();
         logoutIcon2 = new javax.swing.JLabel();
-        appointmentMenu = new javax.swing.JPanel();
-        pSearchIcon1 = new javax.swing.JLabel();
-        pSearchLabel1 = new javax.swing.JLabel();
         CardPanel = new javax.swing.JPanel();
         patRegPanel = new javax.swing.JPanel();
         patRegTitle = new javax.swing.JLabel();
@@ -106,6 +106,8 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         jScrollPane2 = new javax.swing.JScrollPane();
         scheduleTable = new javax.swing.JTable();
         tableNote = new javax.swing.JLabel();
+        searchButton1 = new javax.swing.JButton();
+        opentButton1 = new javax.swing.JButton();
         profilePanel = new javax.swing.JPanel();
         profileTitle = new javax.swing.JLabel();
         tranPanel4 = new javax.swing.JPanel();
@@ -262,7 +264,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
             }
         });
         menu1.add(profileButton);
-        profileButton.setBounds(20, 139, 50, 20);
+        profileButton.setBounds(20, 140, 50, 20);
 
         patRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         patRegister.setOpaque(false);
@@ -295,15 +297,27 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         });
         patSearch.setLayout(null);
 
-        pSearchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchIcon.png"))); // NOI18N
-        patSearch.add(pSearchIcon);
-        pSearchIcon.setBounds(0, 0, 34, 34);
+        appointmentMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        appointmentMenu.setOpaque(false);
+        appointmentMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appointmentMenuMouseClicked(evt);
+            }
+        });
+        appointmentMenu.setLayout(null);
 
-        pSearchLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        pSearchLabel.setForeground(new java.awt.Color(255, 255, 255));
-        pSearchLabel.setText("Patient Search");
-        patSearch.add(pSearchLabel);
-        pSearchLabel.setBounds(40, 0, 160, 35);
+        pSearchLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        pSearchLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        pSearchLabel1.setText("Patient Info");
+        appointmentMenu.add(pSearchLabel1);
+        pSearchLabel1.setBounds(50, 0, 160, 35);
+
+        pSearchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchIcon.png"))); // NOI18N
+        appointmentMenu.add(pSearchIcon1);
+        pSearchIcon1.setBounds(0, 0, 34, 34);
+
+        patSearch.add(appointmentMenu);
+        appointmentMenu.setBounds(0, 0, 220, 40);
 
         menu1.add(patSearch);
         patSearch.setBounds(30, 290, 220, 40);
@@ -378,28 +392,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu1.add(logout2);
-        logout2.setBounds(210, 761, 110, 40);
-
-        appointmentMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        appointmentMenu.setOpaque(false);
-        appointmentMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                appointmentMenuMouseClicked(evt);
-            }
-        });
-        appointmentMenu.setLayout(null);
-        menu1.add(appointmentMenu);
-        appointmentMenu.setBounds(30, 360, 220, 40);
-
-        pSearchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchIcon.png"))); // NOI18N
-        menu1.add(pSearchIcon1);
-        pSearchIcon1.setBounds(30, 360, 34, 34);
-
-        pSearchLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        pSearchLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        pSearchLabel1.setText("Appointments");
-        menu1.add(pSearchLabel1);
-        pSearchLabel1.setBounds(70, 360, 160, 35);
+        logout2.setBounds(210, 761, 116, 40);
 
         getContentPane().add(menu1);
         menu1.setBounds(0, 0, 350, 820);
@@ -608,7 +601,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
             },
             new String [] {
-                "Employee ID", "First Name", "Last Name", "Phone Number", "Email"
+                "Employee ID", "First Name", "Last Name", "Phone Number", "Email", "Appointments"
             }
         ));
         jScrollPane1.setViewportView(patSearchTable);
@@ -636,18 +629,28 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         scheduleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Patient ID", "First Name", "Last Name", "Doctor"
+                "Patient ID", "First Name", "Last Name", "Doctor", "Appointment"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        scheduleTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                scheduleTablePropertyChange(evt);
             }
         });
         jScrollPane2.setViewportView(scheduleTable);
@@ -657,14 +660,12 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
             scheduleTable.getColumnModel().getColumn(1).setResizable(false);
             scheduleTable.getColumnModel().getColumn(2).setResizable(false);
             scheduleTable.getColumnModel().getColumn(3).setResizable(false);
+            scheduleTable.getColumnModel().getColumn(4).setResizable(false);
         }
-        String[] doctors = {"Dr. Tran", "Dr. Hatcher", "Dr. Prouty"};
-        JComboBox combo = new JComboBox<String>(doctors);
-        TableColumn col = scheduleTable.getColumnModel().getColumn(3);
-        col.setCellEditor(new DefaultCellEditor (combo));
+        setDoctor();
 
         tranPanel3.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 10, 1060, 630);
+        jScrollPane2.setBounds(10, 180, 1060, 460);
 
         tableNote.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         tableNote.setForeground(new java.awt.Color(255, 255, 255));
@@ -673,8 +674,34 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         tranPanel3.add(tableNote);
         tableNote.setBounds(80, 645, 930, 30);
 
+        searchButton1.setBackground(new java.awt.Color(71, 177, 175));
+        searchButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        searchButton1.setForeground(new java.awt.Color(255, 255, 255));
+        searchButton1.setText("Save and Refresh");
+        searchButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchButton1MouseClicked(evt);
+            }
+        });
+        tranPanel3.add(searchButton1);
+        searchButton1.setBounds(230, 90, 240, 50);
+
+        opentButton1.setBackground(new java.awt.Color(71, 177, 175));
+        opentButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        opentButton1.setForeground(new java.awt.Color(255, 255, 255));
+        opentButton1.setText("Open");
+        opentButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        opentButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opentButton1ActionPerformed(evt);
+            }
+        });
+        tranPanel3.add(opentButton1);
+        opentButton1.setBounds(550, 90, 140, 50);
+
         schAppointPanel.add(tranPanel3);
-        tranPanel3.setBounds(10, 90, 1080, 683);
+        tranPanel3.setBounds(10, 93, 1080, 680);
         tranPanel3.setBackground(new Color(0,0,0,65));
 
         CardPanel.add(schAppointPanel, "card4");
@@ -1176,7 +1203,7 @@ Datasource patient = new Datasource();
             return;
                 }
            try {
-            ArrayList<Patients> list = patient.queryPTable();
+            ArrayList<Patients> list = patient.queryPTable(currentUser.getId());
             String[] row = new String[6];
             for (Patients index : list) {
               row[0] = Integer.toString(index.getPId());
@@ -1184,7 +1211,7 @@ Datasource patient = new Datasource();
               row[2] = index.getPLastName();
               row[3] = index.getPPhone();
               row[4] = index.getPEmail();
-
+              row[5] = index.getPApt();
               emp.addRow(row);
         }
                System.out.println();
@@ -1193,7 +1220,8 @@ Datasource patient = new Datasource();
            } catch (SQLException ex) {
                System.out.println("Couldn't connect to database: " + ex.getMessage());
            }
-           patient.close();
+
+       patient.close(); 
         CardPanel.removeAll();
         CardPanel.add(patSearchPanel);
         CardPanel.repaint();
@@ -1208,6 +1236,35 @@ Datasource patient = new Datasource();
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void scheduleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scheduleButton1MouseClicked
+        Datasource employee = new Datasource();
+         DefaultTableModel emp = (DefaultTableModel) jTable1.getModel();
+          
+            emp.setRowCount(0);
+            jTable1.setModel(emp);
+         emp.fireTableDataChanged();
+      if(!employee.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+           try {
+            ArrayList<Users> list = employee.querySTable();
+            String[] row = new String[5];
+            for (Users index : list) {
+              row[0] = Integer.toString(index.getId());
+              row[1] = index.getRole();
+              row[2] = index.getFirstName();
+              row[3] = index.getLastName();
+              row[4] = index.getSchedule();
+              emp.addRow(row);
+        }
+               System.out.println();
+            jTable1.setModel(emp);
+            emp.fireTableDataChanged();
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+       
+       employee.close();         
         CardPanel.removeAll();
         CardPanel.add(workSchPanel);
         CardPanel.repaint();
@@ -1323,8 +1380,7 @@ Datasource patient = new Datasource();
 
     private void searchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseClicked
 
-        
-        Datasource patient = new Datasource();
+       Datasource patient = new Datasource();
         DefaultTableModel emp = (DefaultTableModel) patSearchTable.getModel();
         emp.setRowCount(0);
             patSearchTable.setModel(emp);
@@ -1334,7 +1390,7 @@ Datasource patient = new Datasource();
             return;
                 }
            try {
-            ArrayList<Patients> list = patient.queryPTable();
+            ArrayList<Patients> list = patient.queryPTable(currentUser.getId());
             String[] row = new String[6];
             for (Patients index : list) {
               row[0] = Integer.toString(index.getPId());
@@ -1342,7 +1398,7 @@ Datasource patient = new Datasource();
               row[2] = index.getPLastName();
               row[3] = index.getPPhone();
               row[4] = index.getPEmail();
-
+              row[5] = index.getPApt();
               emp.addRow(row);
         }
                System.out.println();
@@ -1356,12 +1412,84 @@ Datasource patient = new Datasource();
     }//GEN-LAST:event_searchButtonMouseClicked
 
     private void appointmentMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentMenuMouseClicked
+ Datasource patient = new Datasource();
+        if(!patient.open()) {
+            System.out.println("Can't open datasource");
+            return;
+                }
+        DefaultTableModel emp = (DefaultTableModel) scheduleTable.getModel();
+        emp.setRowCount(0);
+            scheduleTable.setModel(emp);
+         emp.fireTableDataChanged();
         
+           try {
+            ArrayList<Patients> list = patient.queryPRTable();
+            String[] row = new String[6];
+            for (Patients index : list) {
+              row[0] = Integer.toString(index.getPId());
+              row[1] = index.getPFirstName();
+              row[2] = index.getPLastName();
+              row[4] = index.getPApt();
+              emp.addRow(row);
+        }
+               System.out.println();
+            scheduleTable.setModel(emp);
+            emp.fireTableDataChanged();
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+
+       patient.close();   
         CardPanel.removeAll();
         CardPanel.add(schAppointPanel);
         CardPanel.repaint();
         CardPanel.revalidate();
     }//GEN-LAST:event_appointmentMenuMouseClicked
+
+    private void scheduleTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_scheduleTablePropertyChange
+     
+    }//GEN-LAST:event_scheduleTablePropertyChange
+
+    private void opentButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opentButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opentButton1ActionPerformed
+
+    private void searchButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButton1MouseClicked
+        Datasource patient = new Datasource();
+        if(!patient.open()) {
+            System.out.println("Can't open datasource");
+            return;
+                }
+        DefaultTableModel emp = (DefaultTableModel) scheduleTable.getModel();
+        emp.setRowCount(0);
+            scheduleTable.setModel(emp);
+         emp.fireTableDataChanged();
+        
+           try {
+            ArrayList<Patients> list = patient.queryPRTable();
+            String[] row = new String[6];
+            for(Patients index : list) {
+              row[0] = Integer.toString(index.getPId());
+              row[1] = index.getPFirstName();
+              row[2] = index.getPLastName();
+              row[4] = index.getPApt();
+              emp.addRow(row);
+        }
+              
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+
+       patient.close(); 
+        
+        int rowCount = scheduleTable.getRowCount();
+       for(int i = 0; i < rowCount; i++ ){
+        System.out.println(scheduleTable.getValueAt(i,3));
+       }
+       
+            scheduleTable.setModel(emp);
+            emp.fireTableDataChanged();
+    }//GEN-LAST:event_searchButton1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardPanel;
@@ -1435,11 +1563,10 @@ Datasource patient = new Datasource();
     private javax.swing.JPanel menu1;
     private javax.swing.JScrollPane noteListScrollPane;
     private javax.swing.JButton opentButton;
+    private javax.swing.JButton opentButton1;
     private javax.swing.JLabel pRegIcon;
     private javax.swing.JLabel pRegLabel;
-    private javax.swing.JLabel pSearchIcon;
     private javax.swing.JLabel pSearchIcon1;
-    private javax.swing.JLabel pSearchLabel;
     private javax.swing.JLabel pSearchLabel1;
     private javax.swing.JPanel patDataPanel;
     private javax.swing.JLabel patDataTitle;
@@ -1482,6 +1609,7 @@ Datasource patient = new Datasource();
     private javax.swing.JLabel scheduleButton1;
     private javax.swing.JTable scheduleTable;
     private javax.swing.JButton searchButton;
+    private javax.swing.JButton searchButton1;
     private javax.swing.JTextField state;
     private javax.swing.JTextField state2;
     private javax.swing.JLabel stateTitle;
@@ -1531,16 +1659,12 @@ Datasource patient = new Datasource();
                 jLabelClock.setText(time);
         }
     }
-    
-    private static void setDoctor(){
-        // Query Current Doctors and Choose on to assign to 
-    Object[] options = { "Option 1", "Option 2", "Option 3", "Option 4",
-        "Option 5", "Option 6", "Option 7", "None of the above" };
-    JComboBox optionList = new JComboBox(options);
-    optionList.setSelectedIndex(7);
-    
-    JOptionPane.showMessageDialog(null, optionList, "Title",
-        JOptionPane.QUESTION_MESSAGE);
-        optionList.getSelectedItem();
+    private void setDoctor(){
+        String[] doctors = {"Dr. Tran", "Dr. Hatc", "Dr. Prouty"};
+combo = new JComboBox<>(doctors);
+TableColumn col = scheduleTable.getColumnModel().getColumn(3);
+col.setCellEditor(new DefaultCellEditor (combo));
+
     }
+  
 }

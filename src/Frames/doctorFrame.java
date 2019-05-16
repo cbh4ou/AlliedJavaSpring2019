@@ -64,7 +64,6 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         patSearchTitle = new javax.swing.JLabel();
         tranPanel2 = new javax.swing.JPanel();
         openButton = new javax.swing.JButton();
-        searchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         patSearchTable = new javax.swing.JTable();
         patQPanel = new javax.swing.JPanel();
@@ -295,7 +294,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
 
         pSearchLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         pSearchLabel.setForeground(new java.awt.Color(255, 255, 255));
-        pSearchLabel.setText("Patient Search");
+        pSearchLabel.setText("Patient Queue");
         patSearch.add(pSearchLabel);
         pSearchLabel.setBounds(50, 5, 180, 35);
 
@@ -340,7 +339,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         );
 
         menu.add(logout);
-        logout.setBounds(210, 761, 110, 40);
+        logout.setBounds(210, 761, 116, 40);
 
         home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home.setOpaque(false);
@@ -390,7 +389,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         patSearchTitle.setFont(new java.awt.Font("Yu Gothic Light", 1, 48)); // NOI18N
         patSearchTitle.setForeground(new java.awt.Color(255, 255, 255));
         patSearchTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        patSearchTitle.setText("Patient Search");
+        patSearchTitle.setText("Patient Queue");
         patSearchPanel.add(patSearchTitle);
         patSearchTitle.setBounds(320, 15, 490, 70);
 
@@ -399,7 +398,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         openButton.setBackground(new java.awt.Color(71, 177, 175));
         openButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         openButton.setForeground(new java.awt.Color(255, 255, 255));
-        openButton.setText("Open");
+        openButton.setText("Open Selected Patients Chart");
         openButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         openButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,22 +406,14 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
             }
         });
         tranPanel2.add(openButton);
-        openButton.setBounds(330, 100, 140, 50);
-
-        searchButton.setBackground(new java.awt.Color(71, 177, 175));
-        searchButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        searchButton.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton.setText("Search");
-        searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tranPanel2.add(searchButton);
-        searchButton.setBounds(570, 100, 140, 50);
+        openButton.setBounds(380, 90, 380, 50);
 
         patSearchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Employee ID", "First Name", "Last Name", "Phone Number", "Email"
+                "Patient ID", "First Name", "Last Name", "Phone Number", "Email", "Appointment"
             }
         ));
         jScrollPane1.setViewportView(patSearchTable);
@@ -597,7 +588,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
 
         ProfileID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ProfileID.setForeground(new java.awt.Color(255, 255, 255));
-        ProfileID.setText("EMP" + currentUser.getUserid());
+        ProfileID.setText("EMP" + currentUser.getId());
         tranPanel4.add(ProfileID);
         ProfileID.setBounds(140, 100, 260, 20);
 
@@ -1108,6 +1099,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
         reasonTextArea1.setColumns(20);
         reasonTextArea1.setRows(5);
         reasonJScrollPanel1.setViewportView(reasonTextArea1);
+        reasonTextArea1.setText("HE SICK");
 
         reasonPanel1.add(reasonJScrollPanel1);
         reasonJScrollPanel1.setBounds(10, 20, 1020, 150);
@@ -1157,16 +1149,17 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
 
     private void patSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patSearchMouseClicked
         Datasource patient = new Datasource();
-        DefaultTableModel emp = (DefaultTableModel) patSearchTable.getModel();
-        emp.setRowCount(0);
-            patSearchTable.setModel(emp);
-         emp.fireTableDataChanged();
         if(!patient.open()) {
             System.out.println("Can't open datasource");
             return;
                 }
+        DefaultTableModel emp = (DefaultTableModel) patSearchTable.getModel();
+        emp.setRowCount(0);
+            patSearchTable.setModel(emp);
+         emp.fireTableDataChanged();
+        
            try {
-            ArrayList<Patients> list = patient.queryPTable();
+            ArrayList<Patients> list = patient.queryPTable(currentUser.getId());
             String[] row = new String[6];
             for (Patients index : list) {
               row[0] = Integer.toString(index.getPId());
@@ -1174,7 +1167,7 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
               row[2] = index.getPLastName();
               row[3] = index.getPPhone();
               row[4] = index.getPEmail();
-
+              row[5] = index.getPApt();
               emp.addRow(row);
         }
                System.out.println();
@@ -1199,6 +1192,35 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void scheduleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scheduleButtonMouseClicked
+Datasource employee = new Datasource();
+         DefaultTableModel emp = (DefaultTableModel) workScheduleTable.getModel();
+          
+            emp.setRowCount(0);
+            workScheduleTable.setModel(emp);
+         emp.fireTableDataChanged();
+      if(!employee.open()) {
+                    System.out.println("Can't open datasource");
+                    return;
+                }
+           try {
+            ArrayList<Users> list = employee.querySTable();
+            String[] row = new String[5];
+            for (Users index : list) {
+              row[0] = Integer.toString(index.getId());
+              row[1] = index.getRole();
+              row[2] = index.getFirstName();
+              row[3] = index.getLastName();
+              row[4] = index.getSchedule();
+              emp.addRow(row);
+        }
+               System.out.println();
+            workScheduleTable.setModel(emp);
+            emp.fireTableDataChanged();
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+       
+       employee.close();       
         CardPanel.removeAll();
         CardPanel.add(workSchPanel);
         CardPanel.repaint();
@@ -1429,7 +1451,6 @@ public class doctorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel roleTitle2;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel scheduleButton;
-    private javax.swing.JButton searchButton;
     private javax.swing.JTextField state;
     private javax.swing.JTextField state2;
     private javax.swing.JLabel stateTitle;

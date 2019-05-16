@@ -19,10 +19,10 @@ public class Main {
         }
 
        
-      ArrayList<Users> list = datasource.queryETable();
+        
             Object[] row = new Object[5];
 
-                System.out.println(list);
+             
             
         datasource.close();
             
