@@ -1,7 +1,7 @@
 package Frames;
 
 
-import Models.Datasource;
+import Models.u;
 import Models.Users;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -163,7 +163,7 @@ public class loginFrame extends javax.swing.JFrame {
     private void signInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInMouseClicked
         try {
             String pass = new String(jPasswordField.getPassword());
-            Datasource user = new Datasource();
+            u user = new u();
             System.out.println("PASSWORD: " + pass + " , " + "USERNAME:" + usernameField.getText());
             if(!user.open()) {
                 System.out.println("Can't open datasource");
@@ -196,7 +196,7 @@ public class loginFrame extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 String pass = new String(jPasswordField.getPassword());
-                Datasource user = new Datasource();
+                u user = new u();
                 if(!user.open()) {
                     System.out.println("Can't open datasource");
                     return;
@@ -232,7 +232,7 @@ public class loginFrame extends javax.swing.JFrame {
          if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 String pass = new String(jPasswordField.getPassword());
-                Datasource user = new Datasource();
+                u user = new u();
                 if(!user.open()) {
                     System.out.println("Can't open datasource");
                     return;
@@ -263,7 +263,7 @@ public class loginFrame extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 String pass = new String(jPasswordField.getPassword());
-                Datasource user = new Datasource();
+                u user = new u();
                 if(!user.open()) {
                     System.out.println("Can't open datasource");
                     return;

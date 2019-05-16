@@ -1,8 +1,6 @@
 package SQLDriver;
 
 
-import static Frames.adminFrame.emp;
-import Models.Datasource;
 import Models.Users;
 import java.sql.SQLException;
 
@@ -12,7 +10,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        Datasource datasource = new Datasource();
+        u datasource = new u();
         if(!datasource.open()) {
             System.out.println("Can't open datasource");
             return;

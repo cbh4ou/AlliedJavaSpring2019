@@ -15,6 +15,7 @@ public class Datasource {
     public static final String CONNECTION_STRING = "jdbc:sqlite:src/Database/" + DB_NAME;
 
     public static final String TABLE_USERS= "users";
+    public static final String TABLE_PATIENTS= "patients";
     public static final String COLUMN_USER_ID = "_id";
     public static final String COLUMN_USER_USERID = "userid";
     public static final String COLUMN_USER_EMAIL = "email";
@@ -23,7 +24,21 @@ public class Datasource {
     public static final String COLUMN_USER_PHONE = "phone";
     public static final String COLUMN_USER_LASTNAME = "lastName";
     public static final String COLUMN_USER_FIRSTNAME = "firstName";
-    public static final String COLUMN_USER_SCHEDULE = "schedule";
+    public static final String COLUMN_SCHEDULE = "schedule";
+    
+    public static final String COLUMN_PATIENT_LASTNAME = "plastName";
+    public static final String COLUMN_PATIENT_FIRSTNAME = "pfirstName";
+    public static final String COLUMN_PATIENT_STATUS = "pstatus";
+    public static final String COLUMN_PATIENT_APPOINTMENT = "papt";
+    public static final String COLUMN_PATIENT_ID = "_pid";
+    public static final String COLUMN_PATIENT_PHONE = "pphone";
+    public static final String COLUMN_PATIENT_EMAIL = "pemail";
+    public static final String COLUMN_PATIENT_DOB = "pdob";
+    public static final String COLUMN_PATIENT_STREET_ADDRESS = "pstrAdd";
+    public static final String COLUMN_PATIENT_CITY = "pcity";
+    public static final String COLUMN_PATIENT_STATE = "pstate";
+    public static final String COLUMN_PATIENT_SOCIAL = "psocial";
+    
     private Connection conn;
 
     public boolean open() {
@@ -200,28 +215,210 @@ public class Datasource {
        return null;
      }  
      
-       public ArrayList<Users> querySTable() throws SQLException {      
-        
-             String sql = " SELECT _id, role , firstName, lastName, schedule";
-           try{ Statement statement = conn.createStatement();
-                ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS);
-    
-                ArrayList<Users> users = new ArrayList<>();
-                while(results.next()) {
-                  Users user = new Users();
-                    user.setId(results.getInt(COLUMN_USER_ID));
-                    user.setRole(results.getString(COLUMN_USER_ROLE));
-                    user.setLastName(results.getString(COLUMN_USER_LASTNAME));
-                    user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));                    
-                    user.setPhone(results.getString(COLUMN_USER_SCHEDULE));
-                    users.add(user);
-                }
-                return users;
-           } catch(SQLException e) {
-                System.out.println("Query failed: " + e.getMessage());         
-            } catch (NullPointerException e){
-                System.out.println("Query failed: " + e.getMessage());
-            }
-           return null;
-         }
+	public ArrayList<Users> querySTable() throws SQLException {      
+		
+	         String sql = " SELECT _id, role , firstName, lastName, schedule";
+	       try{ Statement statement = conn.createStatement();
+	            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS);
+	
+	            ArrayList<Users> users = new ArrayList<>();
+	            while(results.next()) {
+	              Users user = new Users();
+	                user.setId(results.getInt(COLUMN_USER_ID));
+	                user.setRole(results.getString(COLUMN_USER_ROLE));
+	                user.setLastName(results.getString(COLUMN_USER_LASTNAME));
+	                user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));	                
+	                user.setPhone(results.getString(COLUMN_SCHEDULE));
+	                users.add(user);
+	            }
+	            return users;
+	       } catch(SQLException e) {
+	            System.out.println("Query failed: " + e.getMessage());         
+	        } catch (NullPointerException e){
+	            System.out.println("Query failed: " + e.getMessage());
+	        }
+	       return null;
+	     }  
+	
+	public ArrayList<Patients> queryPTable() throws SQLException {      
+		
+        String sql = " SELECT __pid, pfirstName, plastName, pphone, pemail";
+      try{ Statement statement = conn.createStatement();
+           ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_PATIENTS);
+
+           ArrayList<Patients> patients = new ArrayList<>();
+           while(results.next()) {
+             Patients patient = new Patients();
+               patient.setPId(results.getInt(COLUMN_PATIENT_ID));
+               patient.setPFirstName(results.getString(COLUMN_PATIENT_FIRSTNAME));	 
+               patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));               
+               patient.setPPhone(results.getString(COLUMN_PATIENT_PHONE));        
+               patient.setPEmail(results.getString(COLUMN_PATIENT_EMAIL));
+               patients.add(patient);
+           }
+           return patients;
+      } catch(SQLException e) {
+           System.out.println("Query failed: " + e.getMessage());         
+       } catch (NullPointerException e){
+           System.out.println("Query failed: " + e.getMessage());
+       }
+      return null;
+    }  
+	
+	public ArrayList<Patients> queryDPSTable() throws SQLException {      
+			
+	        String sql = " SELECT __pid, pfirstName, plastName, pphone, pemail";
+	      try{ Statement statement = conn.createStatement();
+	           ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_PATIENTS);
+	
+	           ArrayList<Patients> patients = new ArrayList<>();
+	           while(results.next()) {
+	        	   Patients patient = new Patients();
+	               patient.setPId(results.getInt(COLUMN_PATIENT_ID));
+	               patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));
+	               patient.setPFirstName(results.getString(COLUMN_PATIENT_FIRSTNAME));	 
+	               patient.setPPhone(results.getString(COLUMN_PATIENT_PHONE));        
+	               patient.setPEmail(results.getString(COLUMN_PATIENT_EMAIL));
+	               patients.add(patient);
+	           }
+	           return patients;
+	      } catch(SQLException e) {
+	           System.out.println("Query failed: " + e.getMessage());         
+	       } catch (NullPointerException e){
+	           System.out.println("Query failed: " + e.getMessage());
+	       }
+	      return null;
+	    }  
+       
+	public ArrayList<Patients> queryDPQTable() throws SQLException {      
+			
+	        String sql = " SELECT __pid, pfirstName, plastName, pstatus";
+	      try{ Statement statement = conn.createStatement();
+	           ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_PATIENTS);
+	
+	           ArrayList<Patients> patients = new ArrayList<>();
+	           while(results.next()) {
+	             Patients patient = new Patients();
+	               patient.setPId(results.getInt(COLUMN_PATIENT_ID));
+	               patient.setPFirstName(results.getString(COLUMN_PATIENT_FIRSTNAME));	
+	               patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));	
+	               patient.setPStatus(results.getString(COLUMN_PATIENT_STATUS));  
+	               patient.setPApt(results.getString(COLUMN_PATIENT_APPOINTMENT));   
+	               patients.add(patient);
+	           }
+	           return patients;
+	      } catch(SQLException e) {
+	           System.out.println("Query failed: " + e.getMessage());         
+	       } catch (NullPointerException e){
+	           System.out.println("Query failed: " + e.getMessage());
+	       }
+	      return null;
+	    }  
+	
+	public ArrayList<Patients> queryRSATable() throws SQLException {      
+		
+        String sql = " SELECT __pid, pfirstName, plastName, papt";
+      try{ Statement statement = conn.createStatement();
+           ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_PATIENTS +"WHERE" + COLUMN_PATIENT_APPOINTMENT + "=null");
+
+           ArrayList<Patients> patients = new ArrayList<>();
+           while(results.next()) {
+             Patients patient = new Patients();
+               patient.setPId(results.getInt(COLUMN_PATIENT_ID));
+               patient.setPFirstName(results.getString(COLUMN_PATIENT_FIRSTNAME));	 
+               patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));                  
+               patient.setPApt(results.getString(COLUMN_PATIENT_APPOINTMENT));
+               patients.add(patient);
+           }
+           return patients;
+      } catch(SQLException e) {
+           System.out.println("Query failed: " + e.getMessage());         
+       } catch (NullPointerException e){
+           System.out.println("Query failed: " + e.getMessage());
+       }
+      return null;
+    }  
+	
+	public ArrayList<Patients> queryRPSTable() throws SQLException {      
+			
+	        String sql = " SELECT __pid, pfirstName, plastName, pphone, pemail";
+	      try{ Statement statement = conn.createStatement();
+	           ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_PATIENTS);
+	
+	           ArrayList<Patients> patients = new ArrayList<>();
+	           while(results.next()) {
+	             Patients patient = new Patients();
+	               patient.setPId(results.getInt(COLUMN_PATIENT_ID));
+	               patient.setPFirstName(results.getString(COLUMN_PATIENT_FIRSTNAME));	 
+	               patient.setPLastName(results.getString(COLUMN_PATIENT_LASTNAME));                  
+	               patient.setPPhone(results.getString(COLUMN_PATIENT_PHONE));
+	               patient.setPEmail(results.getString(COLUMN_PATIENT_EMAIL));
+	               patients.add(patient);
+	           }
+	           return patients;
+	      } catch(SQLException e) {
+	           System.out.println("Query failed: " + e.getMessage());         
+	       } catch (NullPointerException e){
+	           System.out.println("Query failed: " + e.getMessage());
+	       }
+	      return null;
+	    }  
+	
+	public void insertPatient(String _pid, String pemail, String pdob, String papt, String pphone,
+		     String pfirstName, String plastName, String psocial, String pstatus, String pstate, String pcity, String pstrAdd) throws SQLException {
+		         String sql = "INSERT INTO users(_pid, pemail,  pdob,  papt,  pphone" + 
+		        		"pfirstName,  plastName,  psocial,  pstatus,  pstate,  pcity,  pstrAdd) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
+
+		        try {
+		            System.out.println("");
+		            PreparedStatement pstmt = conn.prepareStatement(sql);
+		            pstmt.setString(1, _pid);
+		            pstmt.setString(2, pemail);
+		            pstmt.setString(3, pdob);
+		            pstmt.setString(4, papt);
+		            pstmt.setString(5, pphone);
+		            pstmt.setString(6, pfirstName);
+		            pstmt.setString(7, plastName);
+		            pstmt.setString(8, psocial);
+		            pstmt.setString(9, pstatus);
+		            pstmt.setString(10, pstate);
+		            pstmt.setString(11, pcity);
+		            pstmt.setString(12, pstrAdd);
+		            pstmt.executeUpdate();
+		        } catch (SQLException e) {
+		            System.out.println(e.getMessage());
+		        }
+
+		    }
+	
+	public void insertStatus(String pstatus) throws SQLException {
+		         String sql = "INSERT INTO users(pstatus) VALUES(?);";
+
+		        try {
+		            System.out.println("");
+		            PreparedStatement pstmt = conn.prepareStatement(sql);		            
+		            pstmt.setString(1, pstatus);
+		            pstmt.executeUpdate();
+		        } catch (SQLException e) {
+		            System.out.println(e.getMessage());
+		        }
+
+		    }
+	
+	public void updateStatus(int _pid, String status) {
+        String sql = "UPDATE patients SET pstatus = ? "
+                + "WHERE _pid = ?";
+ 
+        try (
+              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setString(1, status);
+            pstmt.setInt(2, _pid);
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
