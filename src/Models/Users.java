@@ -11,7 +11,16 @@ public class Users {
     private String phone;
     private String firstName;
     private String lastName;
+    private String schedule;
+    
+    public String getSchedule() {
+        return schedule;
+    }
 
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+       
     public String getPhone() {
         return phone;
     }

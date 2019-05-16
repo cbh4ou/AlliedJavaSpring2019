@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Datasource {
 
-    public static final String DB_NAME = "persondev.db";
+   public static final String DB_NAME = "persondev.db";
 
     public static final String CONNECTION_STRING = "jdbc:sqlite:src/Database/" + DB_NAME;
 
@@ -24,7 +24,7 @@ public class Datasource {
     public static final String COLUMN_USER_PHONE = "phone";
     public static final String COLUMN_USER_LASTNAME = "lastName";
     public static final String COLUMN_USER_FIRSTNAME = "firstName";
-    public static final String COLUMN_SCHEDULE = "schedule";
+    public static final String COLUMN_USER_SCHEDULE = "schedule";
     
     public static final String COLUMN_PATIENT_LASTNAME = "plastName";
     public static final String COLUMN_PATIENT_FIRSTNAME = "pfirstName";
@@ -38,7 +38,6 @@ public class Datasource {
     public static final String COLUMN_PATIENT_CITY = "pcity";
     public static final String COLUMN_PATIENT_STATE = "pstate";
     public static final String COLUMN_PATIENT_SOCIAL = "psocial";
-    
     private Connection conn;
 
     public boolean open() {
@@ -203,7 +202,7 @@ public class Datasource {
                 user.setLastName(results.getString(COLUMN_USER_LASTNAME));
                 user.setPhone(results.getString(COLUMN_USER_PHONE));                
                 user.setEmail(results.getString(COLUMN_USER_EMAIL));
-                user.setRole(results.getString(COLUMN_USER_ROLE));     
+                user.setSchedule(results.getString(COLUMN_USER_SCHEDULE));     
                 users.add(user);
             }
             return users;
@@ -215,32 +214,52 @@ public class Datasource {
        return null;
      }  
      
-	public ArrayList<Users> querySTable() throws SQLException {      
-		
-	         String sql = " SELECT _id, role , firstName, lastName, schedule";
-	       try{ Statement statement = conn.createStatement();
-	            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_USERS);
-	
-	            ArrayList<Users> users = new ArrayList<>();
-	            while(results.next()) {
-	              Users user = new Users();
-	                user.setId(results.getInt(COLUMN_USER_ID));
-	                user.setRole(results.getString(COLUMN_USER_ROLE));
-	                user.setLastName(results.getString(COLUMN_USER_LASTNAME));
-	                user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));	                
-	                user.setPhone(results.getString(COLUMN_SCHEDULE));
-	                users.add(user);
-	            }
-	            return users;
-	       } catch(SQLException e) {
-	            System.out.println("Query failed: " + e.getMessage());         
-	        } catch (NullPointerException e){
-	            System.out.println("Query failed: " + e.getMessage());
-	        }
-	       return null;
-	     }  
-	
-	public ArrayList<Patients> queryPTable() throws SQLException {      
+     public void updateETable(int _id, String firstName, String lastName, String phone, String email, String schedule ) {
+         System.out.println("bruh");
+        String sql = "UPDATE users SET firstName = ?, lastName = ?, phone = ?, email = ?, schedule = ? "
+                + "WHERE _id = ?";
+        
+        try {
+            System.out.println("bruh2");
+              PreparedStatement pstmt = conn.prepareStatement(sql);
+            // set the corresponding param
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, phone);
+            pstmt.setString(4, email);
+            pstmt.setString(5, schedule);
+            pstmt.setInt(6, _id);
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+       public ArrayList<Users> querySTable() throws SQLException {      
+        
+             String sql = " SELECT _id, role , firstName, lastName, schedule";
+           try{ Statement statement = conn.createStatement();
+                ResultSet results = statement.executeQuery(sql + " FROM " + TABLE_USERS);
+    
+                ArrayList<Users> users = new ArrayList<>();
+                while(results.next()) {
+                  Users user = new Users();
+                    user.setId(results.getInt(COLUMN_USER_ID));
+                    user.setRole(results.getString(COLUMN_USER_ROLE));
+                    user.setLastName(results.getString(COLUMN_USER_LASTNAME));
+                    user.setFirstName(results.getString(COLUMN_USER_FIRSTNAME));                    
+                    user.setSchedule(results.getString(COLUMN_USER_SCHEDULE));
+                    users.add(user);
+                }
+                return users;
+           } catch(SQLException e) {
+                System.out.println("Query failed: " + e.getMessage());         
+            } catch (NullPointerException e){
+                System.out.println("Query failed: " + e.getMessage());
+            }
+           return null;
+         }
+       public ArrayList<Patients> queryPTable() throws SQLException {      
 		
         String sql = " SELECT __pid, pfirstName, plastName, pphone, pemail";
       try{ Statement statement = conn.createStatement();
@@ -421,4 +440,5 @@ public class Datasource {
             System.out.println(e.getMessage());
         }
     }
+        
 }

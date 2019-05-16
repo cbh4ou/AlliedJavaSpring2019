@@ -1,13 +1,18 @@
 package Frames;
 
+import Models.Datasource;
+import Models.Patients;
 import Models.Users;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 public class receptionistFrame extends javax.swing.JFrame implements Runnable{
@@ -29,6 +34,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
         CardPanel.removeAll();
         CardPanel.add(homePanel);
+        setDoctor();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -47,17 +53,17 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         pRegLabel = new javax.swing.JLabel();
         pRegIcon = new javax.swing.JLabel();
         patSearch = new javax.swing.JPanel();
-        pSearchLabel = new javax.swing.JLabel();
         pSearchIcon = new javax.swing.JLabel();
-        schedAppoint = new javax.swing.JPanel();
-        schAppLabel = new javax.swing.JLabel();
-        schAppIcon = new javax.swing.JLabel();
+        pSearchLabel = new javax.swing.JLabel();
         home = new javax.swing.JPanel();
         homeLabel = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
         logout2 = new javax.swing.JPanel();
         logoutLabel2 = new javax.swing.JLabel();
         logoutIcon2 = new javax.swing.JLabel();
+        appointmentMenu = new javax.swing.JPanel();
+        pSearchIcon1 = new javax.swing.JLabel();
+        pSearchLabel1 = new javax.swing.JLabel();
         CardPanel = new javax.swing.JPanel();
         patRegPanel = new javax.swing.JPanel();
         patRegTitle = new javax.swing.JLabel();
@@ -90,14 +96,6 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         patSearchPanel = new javax.swing.JPanel();
         patSearchTitle = new javax.swing.JLabel();
         tranPanel2 = new javax.swing.JPanel();
-        patIDTitle = new javax.swing.JLabel();
-        searchPatID = new javax.swing.JTextField();
-        searchPhone = new javax.swing.JTextField();
-        searchLastNameTitle1 = new javax.swing.JLabel();
-        searchLastNameTitle = new javax.swing.JLabel();
-        searchLastName = new javax.swing.JTextField();
-        searchFirstName = new javax.swing.JTextField();
-        searchFNameTitle = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
         opentButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -297,40 +295,18 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         });
         patSearch.setLayout(null);
 
+        pSearchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchIcon.png"))); // NOI18N
+        patSearch.add(pSearchIcon);
+        pSearchIcon.setBounds(0, 0, 34, 34);
+
         pSearchLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         pSearchLabel.setForeground(new java.awt.Color(255, 255, 255));
         pSearchLabel.setText("Patient Search");
         patSearch.add(pSearchLabel);
-        pSearchLabel.setBounds(50, 5, 160, 35);
-
-        pSearchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchIcon.png"))); // NOI18N
-        patSearch.add(pSearchIcon);
-        pSearchIcon.setBounds(0, 5, 34, 34);
+        pSearchLabel.setBounds(40, 0, 160, 35);
 
         menu1.add(patSearch);
-        patSearch.setBounds(28, 270, 220, 40);
-
-        schedAppoint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        schedAppoint.setOpaque(false);
-        schedAppoint.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                schedAppointMouseClicked(evt);
-            }
-        });
-        schedAppoint.setLayout(null);
-
-        schAppLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        schAppLabel.setForeground(new java.awt.Color(255, 255, 255));
-        schAppLabel.setText("Schedule Appointment");
-        schedAppoint.add(schAppLabel);
-        schAppLabel.setBounds(50, 5, 260, 35);
-
-        schAppIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/penPaperIcon.png"))); // NOI18N
-        schedAppoint.add(schAppIcon);
-        schAppIcon.setBounds(4, 2, 35, 40);
-
-        menu1.add(schedAppoint);
-        schedAppoint.setBounds(28, 340, 310, 40);
+        patSearch.setBounds(30, 290, 220, 40);
 
         home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home.setOpaque(false);
@@ -403,6 +379,27 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         menu1.add(logout2);
         logout2.setBounds(210, 761, 110, 40);
+
+        appointmentMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        appointmentMenu.setOpaque(false);
+        appointmentMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appointmentMenuMouseClicked(evt);
+            }
+        });
+        appointmentMenu.setLayout(null);
+        menu1.add(appointmentMenu);
+        appointmentMenu.setBounds(30, 360, 220, 40);
+
+        pSearchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchIcon.png"))); // NOI18N
+        menu1.add(pSearchIcon1);
+        pSearchIcon1.setBounds(30, 360, 34, 34);
+
+        pSearchLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        pSearchLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        pSearchLabel1.setText("Appointments");
+        menu1.add(pSearchLabel1);
+        pSearchLabel1.setBounds(70, 360, 160, 35);
 
         getContentPane().add(menu1);
         menu1.setBounds(0, 0, 350, 820);
@@ -580,57 +577,18 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
 
         tranPanel2.setLayout(null);
 
-        patIDTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        patIDTitle.setForeground(new java.awt.Color(255, 255, 255));
-        patIDTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        patIDTitle.setText("Patient ID:");
-        tranPanel2.add(patIDTitle);
-        patIDTitle.setBounds(70, 70, 140, 21);
-
-        searchPatID.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel2.add(searchPatID);
-        searchPatID.setBounds(220, 60, 130, 30);
-
-        searchPhone.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel2.add(searchPhone);
-        searchPhone.setBounds(220, 130, 170, 30);
-
-        searchLastNameTitle1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        searchLastNameTitle1.setForeground(new java.awt.Color(255, 255, 255));
-        searchLastNameTitle1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        searchLastNameTitle1.setText("Phone Number:");
-        tranPanel2.add(searchLastNameTitle1);
-        searchLastNameTitle1.setBounds(40, 140, 170, 21);
-
-        searchLastNameTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        searchLastNameTitle.setForeground(new java.awt.Color(255, 255, 255));
-        searchLastNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        searchLastNameTitle.setText("Last Name:");
-        tranPanel2.add(searchLastNameTitle);
-        searchLastNameTitle.setBounds(410, 140, 130, 21);
-
-        searchLastName.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel2.add(searchLastName);
-        searchLastName.setBounds(550, 130, 170, 30);
-
-        searchFirstName.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        tranPanel2.add(searchFirstName);
-        searchFirstName.setBounds(550, 60, 170, 30);
-
-        searchFNameTitle.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        searchFNameTitle.setForeground(new java.awt.Color(255, 255, 255));
-        searchFNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        searchFNameTitle.setText("First Name:");
-        tranPanel2.add(searchFNameTitle);
-        searchFNameTitle.setBounds(420, 70, 120, 21);
-
         searchButton.setBackground(new java.awt.Color(71, 177, 175));
         searchButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton.setText("Search");
+        searchButton.setText("Refresh");
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchButtonMouseClicked(evt);
+            }
+        });
         tranPanel2.add(searchButton);
-        searchButton.setBounds(880, 50, 140, 50);
+        searchButton.setBounds(290, 90, 140, 50);
 
         opentButton.setBackground(new java.awt.Color(71, 177, 175));
         opentButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -643,7 +601,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
             }
         });
         tranPanel2.add(opentButton);
-        opentButton.setBounds(880, 120, 140, 50);
+        opentButton.setBounds(590, 90, 140, 50);
 
         patSearchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1207,18 +1165,40 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_patRegisterMouseClicked
 
     private void patSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patSearchMouseClicked
+
+Datasource patient = new Datasource();
+        DefaultTableModel emp = (DefaultTableModel) patSearchTable.getModel();
+        emp.setRowCount(0);
+            patSearchTable.setModel(emp);
+         emp.fireTableDataChanged();
+        if(!patient.open()) {
+            System.out.println("Can't open datasource");
+            return;
+                }
+           try {
+            ArrayList<Patients> list = patient.queryPTable();
+            String[] row = new String[6];
+            for (Patients index : list) {
+              row[0] = Integer.toString(index.getPId());
+              row[1] = index.getPFirstName();
+              row[2] = index.getPLastName();
+              row[3] = index.getPPhone();
+              row[4] = index.getPEmail();
+
+              emp.addRow(row);
+        }
+               System.out.println();
+            patSearchTable.setModel(emp);
+            emp.fireTableDataChanged();
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+           patient.close();
         CardPanel.removeAll();
         CardPanel.add(patSearchPanel);
         CardPanel.repaint();
         CardPanel.revalidate();
     }//GEN-LAST:event_patSearchMouseClicked
-
-    private void schedAppointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schedAppointMouseClicked
-        CardPanel.removeAll();
-        CardPanel.add(schAppointPanel);
-        CardPanel.repaint();
-        CardPanel.revalidate();
-    }//GEN-LAST:event_schedAppointMouseClicked
 
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         CardPanel.removeAll();
@@ -1341,6 +1321,48 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
         CardPanel.revalidate();
     }//GEN-LAST:event_opentButtonActionPerformed
 
+    private void searchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseClicked
+
+        
+        Datasource patient = new Datasource();
+        DefaultTableModel emp = (DefaultTableModel) patSearchTable.getModel();
+        emp.setRowCount(0);
+            patSearchTable.setModel(emp);
+         emp.fireTableDataChanged();
+        if(!patient.open()) {
+            System.out.println("Can't open datasource");
+            return;
+                }
+           try {
+            ArrayList<Patients> list = patient.queryPTable();
+            String[] row = new String[6];
+            for (Patients index : list) {
+              row[0] = Integer.toString(index.getPId());
+              row[1] = index.getPFirstName();
+              row[2] = index.getPLastName();
+              row[3] = index.getPPhone();
+              row[4] = index.getPEmail();
+
+              emp.addRow(row);
+        }
+               System.out.println();
+            patSearchTable.setModel(emp);
+            emp.fireTableDataChanged();
+           } catch (SQLException ex) {
+               System.out.println("Couldn't connect to database: " + ex.getMessage());
+           }
+
+       patient.close(); 
+    }//GEN-LAST:event_searchButtonMouseClicked
+
+    private void appointmentMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentMenuMouseClicked
+        
+        CardPanel.removeAll();
+        CardPanel.add(schAppointPanel);
+        CardPanel.repaint();
+        CardPanel.revalidate();
+    }//GEN-LAST:event_appointmentMenuMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardPanel;
     private javax.swing.JLabel ProfileID;
@@ -1354,6 +1376,7 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField address2;
     private javax.swing.JLabel addressTitle;
     private javax.swing.JLabel addressTitle2;
+    private javax.swing.JPanel appointmentMenu;
     private javax.swing.JLabel bg;
     private javax.swing.JTextField city;
     private javax.swing.JTextField city2;
@@ -1406,14 +1429,8 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel lNameTitle2;
     private javax.swing.JTextField lastName;
     private javax.swing.JTextField lastName2;
-    private javax.swing.JPanel logout;
-    private javax.swing.JPanel logout1;
     private javax.swing.JPanel logout2;
-    private javax.swing.JLabel logoutIcon;
-    private javax.swing.JLabel logoutIcon1;
     private javax.swing.JLabel logoutIcon2;
-    private javax.swing.JLabel logoutLabel;
-    private javax.swing.JLabel logoutLabel1;
     private javax.swing.JLabel logoutLabel2;
     private javax.swing.JPanel menu1;
     private javax.swing.JScrollPane noteListScrollPane;
@@ -1421,10 +1438,11 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel pRegIcon;
     private javax.swing.JLabel pRegLabel;
     private javax.swing.JLabel pSearchIcon;
+    private javax.swing.JLabel pSearchIcon1;
     private javax.swing.JLabel pSearchLabel;
+    private javax.swing.JLabel pSearchLabel1;
     private javax.swing.JPanel patDataPanel;
     private javax.swing.JLabel patDataTitle;
-    private javax.swing.JLabel patIDTitle;
     private javax.swing.JPanel patRegPanel;
     private javax.swing.JLabel patRegTitle;
     private javax.swing.JPanel patRegister;
@@ -1459,21 +1477,11 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel roleTitle;
     private javax.swing.JLabel roleTitle2;
     private javax.swing.JButton saveButton;
-    private javax.swing.JLabel schAppIcon;
-    private javax.swing.JLabel schAppLabel;
     private javax.swing.JPanel schAppointPanel;
     private javax.swing.JLabel schAppointTitle;
-    private javax.swing.JPanel schedAppoint;
     private javax.swing.JLabel scheduleButton1;
     private javax.swing.JTable scheduleTable;
     private javax.swing.JButton searchButton;
-    private javax.swing.JLabel searchFNameTitle;
-    private javax.swing.JTextField searchFirstName;
-    private javax.swing.JTextField searchLastName;
-    private javax.swing.JLabel searchLastNameTitle;
-    private javax.swing.JLabel searchLastNameTitle1;
-    private javax.swing.JTextField searchPatID;
-    private javax.swing.JTextField searchPhone;
     private javax.swing.JTextField state;
     private javax.swing.JTextField state2;
     private javax.swing.JLabel stateTitle;
@@ -1522,5 +1530,17 @@ public class receptionistFrame extends javax.swing.JFrame implements Runnable{
                 jLabelDate.setText(date);
                 jLabelClock.setText(time);
         }
+    }
+    
+    private static void setDoctor(){
+        // Query Current Doctors and Choose on to assign to 
+    Object[] options = { "Option 1", "Option 2", "Option 3", "Option 4",
+        "Option 5", "Option 6", "Option 7", "None of the above" };
+    JComboBox optionList = new JComboBox(options);
+    optionList.setSelectedIndex(7);
+    
+    JOptionPane.showMessageDialog(null, optionList, "Title",
+        JOptionPane.QUESTION_MESSAGE);
+        optionList.getSelectedItem();
     }
 }

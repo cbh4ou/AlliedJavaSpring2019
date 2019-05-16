@@ -1,13 +1,14 @@
 package Frames;
 
 
-import Models.u;
+import Models.Datasource;
 import Models.Users;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class loginFrame extends javax.swing.JFrame {
     int mouseX;
@@ -97,6 +98,11 @@ public class loginFrame extends javax.swing.JFrame {
                 signInMouseClicked(evt);
             }
         });
+        signIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInActionPerformed(evt);
+            }
+        });
         signIn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 signInKeyPressed(evt);
@@ -163,28 +169,31 @@ public class loginFrame extends javax.swing.JFrame {
     private void signInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInMouseClicked
         try {
             String pass = new String(jPasswordField.getPassword());
-            u user = new u();
+            Datasource user = new Datasource();
             System.out.println("PASSWORD: " + pass + " , " + "USERNAME:" + usernameField.getText());
             if(!user.open()) {
                 System.out.println("Can't open datasource");
                 return;
             }
-            if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
+            else if ("Doctor".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
                 doctorFrame doctor = new doctorFrame(user.queryUser(usernameField.getText()));
                 doctor.setVisible(true);
             }
-            if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
+           else if("Recep".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
                 receptionistFrame receptionist = new receptionistFrame(user.queryUser(usernameField.getText()));
                 receptionist.setVisible(true);
             }
-            if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
+           else if("Admin".equals(user.loginUsers(pass,usernameField.getText()))){
                 this.dispose();
                 System.out.println(Users.getCurrentUser());
                 adminFrame admin = new adminFrame(user.queryUser(usernameField.getText()));
                 admin.setVisible(true);
             }
+           else {
+               JOptionPane.showMessageDialog(null, "Invalid Usern");
+           }
             
             user.close();
         } catch (SQLException ex) {
@@ -196,7 +205,7 @@ public class loginFrame extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 String pass = new String(jPasswordField.getPassword());
-                u user = new u();
+                Datasource user = new Datasource();
                 if(!user.open()) {
                     System.out.println("Can't open datasource");
                     return;
@@ -232,7 +241,7 @@ public class loginFrame extends javax.swing.JFrame {
          if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 String pass = new String(jPasswordField.getPassword());
-                u user = new u();
+                Datasource user = new Datasource();
                 if(!user.open()) {
                     System.out.println("Can't open datasource");
                     return;
@@ -263,7 +272,7 @@ public class loginFrame extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 String pass = new String(jPasswordField.getPassword());
-                u user = new u();
+                Datasource user = new Datasource();
                 if(!user.open()) {
                     System.out.println("Can't open datasource");
                     return;
@@ -305,6 +314,10 @@ public class loginFrame extends javax.swing.JFrame {
         usernameField.setText("");
             }
     }//GEN-LAST:event_usernameFieldMouseClicked
+
+    private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signInActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
